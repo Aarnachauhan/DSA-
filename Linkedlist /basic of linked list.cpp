@@ -1,7 +1,7 @@
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-
+//u can also use class in place of struct.
 struct Node{
     //declare
     public:
