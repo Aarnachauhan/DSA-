@@ -3,12 +3,12 @@
 using namespace std;
 
 struct Node{
-    //initialize
+    //declare
     public:
     int data;
     Node* next;
     //store a pointer
-    //declaration
+    //initialise 
     public:
     Node(int data1,Node* next1){
         data=data1;
