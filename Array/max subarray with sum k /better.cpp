@@ -14,7 +14,10 @@ public:
                 int len=i-presum[rem];
                 maxlen=max(maxlen,len);
             }
-            presum[sum]=i;
+            //this will work when we will have 0 in array.
+            //put the sum only when it does not exist.
+           if(presum.find(sum)==presum.end()){
+                presum[sum]=i;
         }
         return maxlen;
     }
