@@ -1,3 +1,6 @@
+//tc- O(nlogn)
+//sc- o(n)
+
 vector<int> superiorElements(vector<int>&a) {
     // Write your code here.
     vector<int> ans;
