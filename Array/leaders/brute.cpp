@@ -1,3 +1,7 @@
+//tc- 0(n2) 
+//sc- no space needed to solve the answer but to keep it. o(n)
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
