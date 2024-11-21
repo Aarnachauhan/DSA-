@@ -7,16 +7,18 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-int findmissing(int a[],int n){
-    cout<<"sum of first n natural numbers"<<endl;
-    int sum1=(n*(n+1))/2;
-    int sum=0;
-    for(int i=0;i<n-1;i++){
-        sum=sum+a[i];
+int missingNumber(vector<int>& arr) {
+        // code here
+        int n=arr.size()+1;
+        int sum=0;
+        int sum1;
+        sum1=(n*(n+1))/2;
+        for(int i=0;i<arr.size();i++){
+            sum+=arr[i];
+        }
+        int miss=sum1-sum;
+        return miss;
     }
-    int diff=sum1-sum;
-    return diff;
-}
 
 int main(){
     int a[]={1,2,4,5};
