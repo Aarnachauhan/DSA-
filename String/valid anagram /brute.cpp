@@ -1,3 +1,5 @@
+tc- nlogn
+
 class Solution {
     public boolean isAnagram(String s1, String s2) {
         sort(s1.begin(),s1.end());
