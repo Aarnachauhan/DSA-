@@ -1,4 +1,5 @@
-
+tc-O(n1+n2)
+sc=o(1);
 
 
 class Solution {
