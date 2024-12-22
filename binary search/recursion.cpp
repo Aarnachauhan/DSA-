@@ -7,7 +7,7 @@ if(nums[mid]==target) return mid;
 else if(nums[mid]<target){
     return bs(nums,mid+1,high,target);
 }
- return bs(nums,mid-1,high,target);
+ return bs(nums,low,mid-1,target);
 
 }
 
