@@ -3,22 +3,19 @@ class Solution {
 public:
     void sortColors(vector<int>& nums) {
         int n=nums.size();
-        int low=0;
-        int mid=0;
-        int high=n-1;
-        while(mid<=high){
-            if(nums[mid]==0){
-                swap(nums[low],nums[mid]);
-                low++;
-                mid++;
-            }
-         else if(nums[mid]==1){
-            mid++;
-         }
-         else{
-            swap(nums[mid],nums[high]);
-            high--;
-         }
-        }
+   int low=0; //0->low-1 all zeroes
+   int mid=0;  //low to mid-1 all 1s
+   int high=n-1; //mid to high all unsorted
+   while(mid<=high){ //high+1 to n-1 all 2
+    if(nums[mid]==0){
+        swap(nums[mid],nums[low]); //1 le ayenge
+        low++;
+        mid++;
+    }else if(nums[mid]==1) mid++; 
+    else{ // nums[mid]==2
+       swap(nums[mid],nums[high]);
+       high--;
+    }
+   }
     }
 };
