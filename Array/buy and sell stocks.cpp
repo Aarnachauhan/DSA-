@@ -1,4 +1,5 @@
 https://www.geeksforgeeks.org/batch/gfg-160-problems/track/arrays-gfg-160/problem/stock-buy-and-sell2615
+//same day 
 int maximumProfit(vector<int> &prices) {
         // code here
         int n=prices.size();
