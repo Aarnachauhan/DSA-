@@ -7,19 +7,23 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-int missingNumber(vector<int>& arr) {
-        // code here
-        int n=arr.size()+1;
-        int sum=0;
-        int sum1;
-        sum1=(n*(n+1))/2;
-        for(int i=0;i<arr.size();i++){
-            sum+=arr[i];
-        }
-        int miss=sum1-sum;
-        return miss;
-    }
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int sum1=0;
+        int sum2=0;
 
+        for(int i=0; i<=nums.size(); i++){
+            sum1=sum1+i;
+        }
+
+        for(int i=0; i<nums.size(); i++){
+            sum2=sum2+nums[i];
+        }
+
+        return sum1-sum2;
+    }
+};
 int main(){
     int a[]={1,2,4,5};
     int n;
