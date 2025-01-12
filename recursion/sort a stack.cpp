@@ -1,3 +1,9 @@
+gfg
+tc-o(n^2)
+sc-o(n)
+ 
+
+
 void insert_correct_position(int x, stack<int> &s){
  if(s.size()==0  || s.top()<x ){
      s.push(x);
