@@ -4,7 +4,7 @@ this needs optimization using dp
 public:
     int prints(int ind,int s,vector<int> &arr,int target,int n){
         
-        if(s>target) return 0;
+        if(s>target) return 0; //use this line only if all no are positive
         if(ind==n){
             if(s==target){
             return 1;
