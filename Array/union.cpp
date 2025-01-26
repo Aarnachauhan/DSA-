@@ -1,4 +1,6 @@
 gfg
+tc-o(n+m)
+sc-o(n+m)
 
 vector<int> findUnion(vector<int> &a, vector<int> &b) {
         // Your code here
