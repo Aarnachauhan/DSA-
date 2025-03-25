@@ -1,3 +1,5 @@
+// naukri.com coding ninja
+
 #include<bits/stdc++.h>
 #include<vector>
 #include<iostream>
