@@ -1,7 +1,8 @@
 //leetcode 51
 //done using backtracking
 
-
+tc-o(N!*N)
+sc-o(N)
 
 
 class Solution {
