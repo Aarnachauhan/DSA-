@@ -9,7 +9,7 @@ solved by backtracking. and no platfrom to practice this
 using namespace std;
 bool safe(int node, int color[],bool graph[101][101], int N,int col){
     for(int k=0;k<N;k++){
-        if(k!=node && graph[k][node]==1 && color[k]==col){
+        if(k!=node && graph[k][node]==1 && color[k]==col){ //k!=node because we want to ensure k!=node and k is adjacent to node.
             return false;
         }
     }
