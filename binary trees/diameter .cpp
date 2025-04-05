@@ -2,7 +2,7 @@ gfg, lc
 tc-O(n)
 sc-o(n)
 
-
+//height is the no of nodes
 
 class Solution {
   public:
