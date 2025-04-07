@@ -14,7 +14,7 @@ struct node *newNode(int data) {
   node->left = NULL;
   node->right = NULL;
   return (node);
-}*/
+}
 
 class Solution{
 public:
