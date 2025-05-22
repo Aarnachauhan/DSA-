@@ -1,20 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
-int consecutive(int a[],int n){
-    int maxi=0;
-    int cnt=0;
-    for(int i=1;i<n;i++){
-    if(a[i]==1){
-        cnt++;
-        maxi=max(maxi,cnt);
-    }else{
-        cnt=0;
-    }
-    maxi=max(maxi,cnt);
-    }
-    return maxi;
-}
 
+
+
+int findMaxConsecutiveOnes(vector<int>& nums) {
+        int n=nums.size();
+        int maxi=INT_MIN;
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            if(nums[i]==1) {
+                cnt++;
+                maxi=max(maxi,cnt);
+            }
+            else{
+                
+                cnt=0;
+            }
+        }
+        return maxi;
+    }
 int main(){
     int a[]={1,1,0,1,1,1};
     int n=sizeof(a)/sizeof(a[0]);
