@@ -1,6 +1,8 @@
 //tc-very mindblowing. see notes
-//sc-o(n)
+//tc- O(3n)
+//sc-o(1)
 
+// if the set takes o(n) as sc then solve it through brute force
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
@@ -10,7 +12,7 @@ public:
             return 0;
         }
         unordered_set<int> st;
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n;i++){ //o(n)
             st.insert(nums[i]);
         }
         for(auto it: st){
@@ -18,7 +20,7 @@ public:
                 int cnt=1;
                 int x=it;
             
-            while(st.find(x+1)!=st.end()){
+            while(st.find(x+1)!=st.end()){ //O(2n)
                 x+=1;
                 cnt+=1;
             }
