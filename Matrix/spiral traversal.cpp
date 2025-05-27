@@ -1,5 +1,6 @@
 difficult
-
+tc- O(n*m)
+sc- O(n*m)
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
