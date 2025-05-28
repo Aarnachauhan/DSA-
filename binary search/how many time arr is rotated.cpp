@@ -1,6 +1,6 @@
 //approach- find how minimum element in rotated sorted array and store its index
 
-
+gfg
 class Solution {
   public:
     int findKRotation(vector<int> &arr) {
