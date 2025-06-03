@@ -1,3 +1,5 @@
+lc, naukri.com , gfg
+
 class Solution {
   public:
     int floorSqrt(int n) {
