@@ -1,3 +1,7 @@
+leetcode
+tc- O(N)*o(log(maxelement))
+
+
 class Solution {
 public:
 int findmax(vector<int> &piles){
