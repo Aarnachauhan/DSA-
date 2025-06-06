@@ -13,6 +13,6 @@ public:
                 e=mid-1;
             }
         }
-        return s+k;
+        return e+k+1;
     }
 };
