@@ -39,6 +39,8 @@ public:
                 newInterval = interval; // treat current interval as new interval
             }
             // Case 3: Overlap - merge intervals
+            //interval[0] <newinterval[1]
+            //matlab interval shuru ho  gaya bina newinterval k end huye
             else {
                 newInterval[0] = min(newInterval[0], interval[0]);
                 newInterval[1] = max(newInterval[1], interval[1]);
