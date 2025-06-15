@@ -1,3 +1,6 @@
+leetcode
+//tc-o(2^n) same sc
+
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
