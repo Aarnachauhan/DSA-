@@ -1,6 +1,7 @@
 no platform 
-tc-
-sc-
+tc-o(N)
+sc-o(n) + o(n) 
+//for recursion stack space and vector 
 
 
 #include <iostream>
