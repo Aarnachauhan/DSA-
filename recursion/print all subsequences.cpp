@@ -1,5 +1,6 @@
 leetcode
-//tc-o(2^n) same sc
+tc-o(2^n *n)  every index has 2 choices
+sc-o(n)
 
 class Solution {
 public:
