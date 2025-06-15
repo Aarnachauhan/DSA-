@@ -38,3 +38,25 @@ int solve(int n, vector<int> &t){
     }
 };
 
+optimal 
+tc-o(n)
+sc-o(1)
+
+class Solution {
+public:
+int climbStairs(int n){
+     if (n <= 3) return n; //n=1 then ans=1 , n=2 then ans=2 , n=3 then ans=3
+
+        int prev1 = 3;
+        int prev2 = 2;
+        int cur = 0;
+
+        for (int i = 3; i < n; i++) { //real game starts from here.
+            cur = prev1 + prev2; // for ex i=3 then ans= 2 + 1
+            prev2 = prev1; // we will update 
+            prev1 = cur;
+        }
+
+        return cur;      
+    }
+};
