@@ -27,7 +27,7 @@ int frogJump(int n, vector<int> &heights)
 
 tabulation  --> bottom up
 tc=O(N)
-sc-o(N) + O(n)
+sc- O(n) //no stack space
 #include <bits/stdc++.h> 
 #include <iostream>
 int frogJump(int n, vector<int> &heights)
