@@ -45,3 +45,6 @@ for(int i=1;i<=n;i++){
     return dp[n-1];
 }
 
+space opt
+we have to keep track of last k elements only 
+so o(N) to O(K)
