@@ -1,1 +1,52 @@
+leetcode 64
+
+recursion 
+class Solution {
+public:
+ int rec(int i,int j, int m , int n , vector<vector<int>> &grid){
+    if(i==0 && j==0) return grid[0][0];
+    if(i<0 || j<0) return INT_MAX;
+
+    //up 
+    int up= grid[i][j] + rec(i-1,j,m,n,grid);
+
+    //left
+    int left=grid[i][j] + rec(i,j-1,m,n,grid);
+    return min(up , left);
+ }
+    int minPathSum(vector<vector<int>>& grid) {
+       int m=grid.size();
+       int n=grid[0].size();
+
+       return rec(m-1,n-1,m,n,grid);
+        
+    }
+};
+
+memo
+class Solution {
+public:
+ int rec(int i,int j,  vector<vector<int>> &grid,vector<vector<int>>&dp){
+    if(i==0 && j==0) return dp[0][0];
+    if(i<0 || j<0) return INT_MAX;
+    if(dp[i][j]!= -1) return dp[i][j];
+
+    //up 
+    int up= grid[i][j] + rec(i-1,j,grid,dp);
+
+    //left
+    int left=grid[i][j] + rec(i,j-1,grid,dp);
+    return dp[i][j]=min(up , left);
+ }
+    int minPathSum(vector<vector<int>>& grid) {
+       int m=grid.size();
+       int n=grid[0].size();
+       vector<vector<int>> dp(m,vector<int> (n,-1));
+
+       return rec(m-1,n-1,grid,dp);
+        
+    }
+};
+
+tabulation
 
