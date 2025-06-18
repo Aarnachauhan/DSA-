@@ -19,7 +19,7 @@ int rec(int i,int j, int m , int n){
     return up + left;
 }
     int uniquePaths(int m, int n) {
-        return rec(0,0,m,n);
+        return rec(m-1,n-1,m,n);
     }
 };
 
