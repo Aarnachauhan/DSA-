@@ -74,4 +74,31 @@ public:
     }
 };
 
+space opt
+class Solution {
+public:
+   int minPathSum(vector<vector<int>>& grid) {
+       int m=grid.size();
+       int n=grid[0].size();
+     
+      vector<int> prev(n,INT_MAX);
 
+
+      for(int i=0;i<m;i++){
+        vector<int> curr(n,INT_MAX);
+        for(int j=0;j<n;j++){
+            if(i==0 && j==0){
+                curr[j] = grid[i][j];
+                continue;
+            }
+            int val= INT_MAX;
+            if(i-1>=0) val= min(val,prev[j]);
+            if(j-1>=0) val= min(val,curr[j-1]);
+
+            curr[j] = val+ grid[i][j];
+        }
+        prev=curr;
+      }
+      return prev[n-1];
+    }
+};
