@@ -63,3 +63,60 @@ int rec(int row, int col ,int n, vector<vector<int>> & triangle, vector<vector<i
 tabulation
 tc-o(n*n)
 sc-o(n*n) // matrix and no recursive stack space
+
+class Solution {
+public:
+   int minimumTotal(vector<vector<int>>& triangle) {
+    int n=triangle.size();
+     vector<vector<int>> dp(n,vector<int>(n,0));
+
+     for(int j=0;j<n;j++){
+        dp[n-1][j] = triangle[n-1][j];
+     }
+
+     for(int i=n-2;i>=0;i--){
+        for(int j=i;j>=0;j--){
+            int down=triangle[i][j] + dp[i+1][j];
+            int dia=triangle[i][j] + dp[i+1][j+1];
+
+            dp[i][j] = min(down, dia);
+
+        }
+     }
+     return dp[0][0];
+    }
+};
+
+
+
+space opt
+tc-same
+sc-o(n)
+class Solution {
+public:
+   int minimumTotal(vector<vector<int>>& triangle) {
+    int n=triangle.size();
+     vector<int> prev(n,0);
+     vector<int> curr(n,0);
+
+     for (int j = 0; j < n; j++) {
+        prev[j] = triangle[n - 1][j]; //i will  be constant here
+    }
+
+        for (int i = n - 2; i >= 0; i--) {
+        for (int j = i; j >= 0; j--) {
+            // Calculate the minimum path sum for the current cell
+            int down = triangle[i][j] + prev[j];
+            int diagonal = triangle[i][j] + prev[j + 1];
+            
+            // Store the minimum of the two possible paths in the current row
+            curr[j] = min(down, diagonal);
+        }
+        // Update the front array with the values from the current row
+        prev = curr;
+    }
+    return prev[0];
+
+    
+    }
+};
