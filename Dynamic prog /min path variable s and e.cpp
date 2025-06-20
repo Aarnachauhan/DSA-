@@ -77,3 +77,41 @@ int recur(int row, int col , int n , vector<vector<int>> & matrix ,vector<vector
 
 
 tabulation
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n= matrix.size();
+        int ans=INT_MAX;
+
+        vector<int> dp(n,INT_MAX);
+        //first row of dp with first row of matrix
+        for(int j=0;j<n;j++){
+            dp[j]= matrix[0][j];
+        }
+
+        for(int i=0;i<n-1;i++){
+            vector<int> temp(n,INT_MAX);
+            for(int j=0;j<n;j++){
+                //left 
+                if(j-1>=0){
+                    temp[j-1]=min(temp[j-1], dp[j] + matrix[i+1][j-1]);
+                }
+                //middle
+                temp[j]= min(temp[j], dp[j]+ matrix[i+1][j]);
+
+                //right
+                if(j+1<n){
+                    temp[j+1] = min( temp[j+1], dp[j] + matrix[i+1][j+1]);
+                }
+            }
+            dp=temp;
+        }
+        //get the minimum value from last row.
+        for(int j=0;j<n;j++){
+            ans= min(ans, dp[j]);
+        }
+        return ans;
+    }
+};
+
+space optimization 
