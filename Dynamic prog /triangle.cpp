@@ -30,7 +30,7 @@ void rec(int row, int col , int val,int ans, int n, vector<vector<int>> & triang
 
 memo
 tc- o(n*n)
-sc-o(n*n) +o(n)
+sc-o(n*n) //for matrix , no recursive stack space
 class Solution {
 public:
 int rec(int row, int col ,int n, vector<vector<int>> & triangle, vector<vector<int>> & dp){
