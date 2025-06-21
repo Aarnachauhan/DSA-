@@ -72,3 +72,6 @@ class Solution {
         return dp[n-1][sum];
         }
 };
+
+
+space optimization is left
