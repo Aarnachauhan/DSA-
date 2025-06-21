@@ -34,3 +34,41 @@ class Solution {
 };
 
 tabulation
+
+
+class Solution {
+  public:
+  
+    bool isSubsetSum(vector<int>& arr, int sum) {
+        // code here
+        int n=arr.size();
+        vector<vector<bool>> dp(n,vector<bool>(sum+1 , false));
+        //base case :
+        //when target/sum is zero
+        for(int i=0;i<n;i++){
+            dp[i][0]=true;
+        }
+        
+        
+        //only when arr[0]= sum
+        if(arr[0]<=sum){
+            dp[0][arr[0]]= true;
+        }
+        
+        for(int ind=1;ind<n;ind++){
+            for(int j=1;j<=sum;j++){
+                
+                bool nottake= dp[ind-1][j];
+                
+                bool take= false;
+                if(arr[ind]<=j){
+                    take=dp[ind-1][j-arr[ind]];
+                   // take=true;
+                }
+                
+                dp[ind][j]= nottake || take;
+            }
+        }
+        return dp[n-1][sum];
+        }
+};
