@@ -115,3 +115,44 @@ public:
 };
 
 space optimization 
+tc-o(n*n) + o(n)
+sc-o(n)
+class Solution {
+public:
+  int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        int ans = INT_MAX;
+
+        vector<int> prev(n, INT_MAX);
+
+        for(int j=0;j<n;j++){ //fill first row 
+            prev[j] = matrix[0][j];
+        }
+        
+        for(int i=0;i<n-1;i++){
+            vector<int> curr(n,INT_MAX);
+            for(int j=0;j<n;j++){
+                //left diagonal 
+                if(j-1>=0){
+                    curr[j-1]= min(curr[j-1] , prev[j] + matrix[i+1][j-1] );
+                }
+
+                //middle
+                curr[j] = min(curr[j] ,prev[j] + matrix[i+1][j]);
+
+                //right diagonal 
+                if(j+1<n){
+                    curr[j+1] = min(curr[j+1] , prev[j] + matrix[i+1][j+1]);
+                }
+            }
+            prev=curr;
+        }
+        for(int j=0;j<n;j++){
+            ans= min(ans, prev[j]);
+        }
+
+        return ans;
+    }
+   
+    
+};
