@@ -2,6 +2,8 @@ gfg
 subset sum problem 
 
 memorization 
+tc- o(n* sum)
+sc- o(n* target) * o(n)
 class Solution {
   public:
   bool subsetsum(int ind,vector<vector<int>>  & dp , vector<int>&arr, int sum){
@@ -30,3 +32,5 @@ class Solution {
         return subsetsum(n-1, dp , arr , sum );
     }
 };
+
+tabulation
