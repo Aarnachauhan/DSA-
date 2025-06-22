@@ -1,4 +1,4 @@
-gfg
+gfg -  problem and solved using gfg article
 
 memo
 tc-O(n*target) 
@@ -62,5 +62,38 @@ class Solution {
           }
       }
       return dp[n][target];
+    }
+};
+
+space opti
+tc- o(n*target)
+sc- o(n)
+  class Solution {
+  public:
+   
+
+    int perfectSum(vector<int>& arr, int target) {
+        // code here
+        int n=arr.size();
+        
+       vector<int> prev(target+1 , 0);
+        
+       prev[0]=1; //achiving sum of 0 by taking no element
+      
+      for(int i=1;i<=n;i++){
+          vector<int> curr(target+1,0);
+          for(int j=0;j<=target; j++){
+              
+             //not take
+             curr[j]= prev[j];
+             
+             //take
+             if(j>=arr[i-1]){
+                  curr[j] += prev[j - arr[i - 1]];
+             }
+          }
+          prev=curr;
+      }
+      return prev[target];
     }
 };
