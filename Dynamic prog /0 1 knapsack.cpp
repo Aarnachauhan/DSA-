@@ -89,7 +89,7 @@ int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight)
 	        if(weight[ind]<=w){
 		    take=value[ind] + prev[w-weight[ind]];
 	    }
-	       curr[w] = max(take , nottake);
+	       curr[w] = max(take , nottake); //here the curr is updated
 		}
 		prev=curr;
 	}
