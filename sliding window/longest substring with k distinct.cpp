@@ -24,7 +24,7 @@ class Solution {
         return maxi;
     }
 };
-
+optimal solution
 tc-o(n)*(log 256)
 sc-o(256)
 
