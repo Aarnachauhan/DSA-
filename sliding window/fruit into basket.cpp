@@ -57,3 +57,25 @@ class Solution {
 };
 
 optimal solution . in worst case better is optimal . see notes
+tc-o(n)
+sc-o(3)
+class Solution {
+  public:
+    int totalElements(vector<int> &arr) {
+        // code here
+        int l=0,r=0,maxi=0;
+        int n=arr.size();
+        map<int,int> mpp;
+        while(r<n){
+            mpp[arr[r]]++;
+            if(mpp.size()>2){
+                mpp[arr[l]]--;
+                if(mpp[arr[l]]==0) mpp.erase(arr[l]);
+                l++;
+            }
+            if(mpp.size()<=2) maxi=max(maxi,r-l+1);
+            r++;
+        }
+        return maxi;
+    }
+};
