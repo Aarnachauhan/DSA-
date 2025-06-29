@@ -24,4 +24,34 @@ public:
     }
 };
 
-brute:
+division operation method (not allowed for lc)
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n=nums.size();
+        int count=0;
+        int pro=1;
+        vector<int>res(n);
+        for(int i=0;i<n;i++){
+            if(nums[i]!=0){
+                pro*=nums[i];
+            }
+            if(nums[i]==0) count++;
+        }
+        for(int i=0;i<n;i++){
+            if(nums[i]!=0){
+                if(count>0) res[i]=0;
+                else res[i]=pro/nums[i];
+            }
+            else{
+                if(count>1) res[i]=0;
+                else{
+                    res[i]=pro;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+better
