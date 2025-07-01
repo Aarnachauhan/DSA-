@@ -1,5 +1,6 @@
 leetcode 1432
-
+tc-o(log10(num)) as no of digits in a number= log10(num)
+sc-o(log10(num))
 class Solution {
 public:
     int maxDiff(int num) {
