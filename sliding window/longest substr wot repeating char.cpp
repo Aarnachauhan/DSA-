@@ -46,3 +46,25 @@ public:
         return maxlen;
     }
 };
+
+using last seen
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int maxi=0;
+        int l=0;
+        int n=s.length();
+        unordered_map<char,int> lastseen;
+
+        for(int r=0;r<n;r++){
+            char c=s[r];
+            if(lastseen.find(c)!=lastseen.end() && lastseen[c]>=l){
+                l=lastseen[c]+1;
+            }
+            maxi=max(maxi,r-l+1);
+            lastseen[c]=r;
+        
+        }
+        return maxi;
+    }
+};
