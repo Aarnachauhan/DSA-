@@ -68,3 +68,23 @@ public:
         return maxi;
     }
 };
+
+beats 100% when used vector
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+       int n=s.length();
+       int maxi=0;
+       vector<int> charindex(256,-1);
+       int left=0;
+
+       for(int right=0;right<n;right++){
+        if(charindex[s[right]]>=left){
+            left=charindex[s[right]] +1 ;
+        }
+        charindex[s[right]] =right;
+        maxi=max(maxi,right-left+1);
+       }
+       return maxi;
+    }
+};
