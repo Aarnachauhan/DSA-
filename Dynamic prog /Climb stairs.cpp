@@ -44,19 +44,17 @@ sc-o(1)
 
 class Solution {
 public:
-int climbStairs(int n){
-     if (n <= 3) return n; //n=1 then ans=1 , n=2 then ans=2 , n=3 then ans=3
-
-        int prev1 = 3;
-        int prev2 = 2;
-        int cur = 0;
-
-        for (int i = 3; i < n; i++) { //real game starts from here.
-            cur = prev1 + prev2; // for ex i=3 then ans= 2 + 1
-            prev2 = prev1; // we will update 
-            prev1 = cur;
+    int climbStairs(int n) {
+        if(n<=3) return n; // as ans of 1,2,3 is same 
+        
+        int prev2=1;
+        int prev1=2;
+        int curr=3;
+        for(int i=3;i<=n;i++){
+            curr=prev1+prev2; //3=1+2
+            prev2=prev1;
+            prev1=curr;
         }
-
-        return cur;      
+       return curr;
     }
 };
