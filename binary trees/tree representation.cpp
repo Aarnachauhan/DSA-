@@ -1,4 +1,5 @@
 gfg
+link - https://www.geeksforgeeks.org/problems/binary-tree-representation/1
 tc, sc-o(1)
 *struct node {
   int data;
