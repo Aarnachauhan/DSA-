@@ -1,4 +1,4 @@
-naukri.com
+naukri.com - https://www.naukri.com/code360/problems/tree-traversal_981269?leftPanelTabValue=PROBLEM
 
 void inorder(vector<int> &ino,TreeNode *root){
     if(root==NULL) return;
