@@ -1,6 +1,6 @@
 lc 145
 
-tc-o(2n)
+tc-o(n)
 sc-o(2n)
 
   
