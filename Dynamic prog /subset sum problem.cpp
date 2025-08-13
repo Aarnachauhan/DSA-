@@ -1,5 +1,18 @@
 gfg
 subset sum problem 
+recursion
+f(int i , int target){
+            if(target==0) return true;
+            if(i==0) return (arr[0]==target)
+            
+            bool nottake=f(i-1,target);
+            bool take=false;
+            if(target>=arr[i]){
+                take=f(i-1,target-arr[i]);
+            }
+            return take+nottake;
+        }
+
 
 memorization 
 tc- o(n* sum)
