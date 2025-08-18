@@ -51,3 +51,30 @@ class Solution {
 };
 
 optimal 2- array marking
+class Solution {
+  public:
+    vector<int> findTwoElement(vector<int>& arr) {
+        // code here
+        int n=arr.size();
+        int rep=-1;
+        for(int i=0;i<n;i++){
+            int val=abs(arr[i]);
+            
+            if(arr[val-1]>0){
+                arr[val-1]*=-1;
+            }else{
+                //found the duplicate one.
+                rep=val;
+            }
+            
+        }
+        int miss=-1;
+        for(int i=0;i<n;i++){
+            if(arr[i]>0){
+                miss=i+1;
+                break;
+            }
+        }
+        return {rep,miss};
+    }
+};
