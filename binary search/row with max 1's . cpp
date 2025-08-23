@@ -28,7 +28,7 @@ class Solution {
 
 
 binary search 
-tc-o()
+tc-o(nlogm) as size of one row is m.
 sc-O(1)
 // User function template for C++
 class Solution {
