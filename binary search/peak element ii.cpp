@@ -1,6 +1,6 @@
 leetcode 1901
-tc-
-sc-
+tc-o(logm *n)
+sc-o(1)
 
 class Solution {
 public:
