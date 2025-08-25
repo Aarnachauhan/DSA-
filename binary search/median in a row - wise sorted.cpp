@@ -2,7 +2,7 @@ gfg
 
 naive-
 tc-o(n*m + n*m log(n*m))
-sc-o(1) // not counting list which we using for storing.
+sc-o(n*m) 
   class Solution {
   public:
     int median(vector<vector<int>> &mat) {
