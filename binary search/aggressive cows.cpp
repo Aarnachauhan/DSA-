@@ -29,8 +29,9 @@ class Solution {
         return limit;
     }
 };
-tc-o()
-sc-o()
+tc-o(nlogn + (o(log2(max-min)*o(n))
+  nlogn for sorting , o(log2(max-min) * o(n) for binary search on n length array. !
+sc-o(1)
 
 
 class Solution {
