@@ -29,3 +29,40 @@ class Solution {
         return limit;
     }
 };
+tc-o()
+sc-o()
+
+
+class Solution {
+  public:
+  bool canplace(vector<int> &stalls ,int dist, int cows){
+      int n=stalls.size();
+      int cntcows=1;
+      int last=stalls[0];
+      for(int i=1;i<n;i++){
+          if(stalls[i]-last >=dist){
+              cntcows++;
+              last=stalls[i];
+          }
+          if(cntcows>=cows) return true;
+      }
+      return false;
+  }
+    int aggressiveCows(vector<int> &stalls, int k) {
+        // code here
+        int n=stalls.size();
+        sort(stalls.begin(),stalls.end());
+        int low=1 , high=stalls[n-1]-stalls[0];
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(canplace(stalls,mid, k)==true){
+           
+                low=mid+1;
+                
+            }else {
+                high=mid-1;
+            }
+        }
+        return high;
+    }
+};
