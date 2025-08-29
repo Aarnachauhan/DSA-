@@ -30,6 +30,7 @@ double minimiseMaxDistance(vector<int> &arr, int k){
 }
 
 better- priority queue
+sc-o(n-1)
 tc- o(nlogn + klogn)
 #include <bits/stdc++.h>
 double minimiseMaxDistance(vector<int> &arr, int k){
