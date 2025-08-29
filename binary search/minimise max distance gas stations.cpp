@@ -30,16 +30,17 @@ double minimiseMaxDistance(vector<int> &arr, int k){
 }
 
 better- priority queue
+tc- o(nlogn + klogn)
 #include <bits/stdc++.h>
 double minimiseMaxDistance(vector<int> &arr, int k){
 	// Write your code here.	
     int n=arr.size();
     vector <int> howmany(n-1,0);
     priority_queue<pair<long double,int>> pq;
-    for(int i=0;i<n-1;i++){
+    for(int i=0;i<n-1;i++){ //nlogn 
         pq.push({arr[i+1]-arr[i], i});
     }
-    for(int g=1;g<=k;g++){
+    for(int g=1;g<=k;g++){ //klogn 
         auto tp=pq.top();
         pq.pop();
         int secindex=tp.second;
