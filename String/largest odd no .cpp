@@ -1,4 +1,6 @@
 lc 1903
+tc-o(n)
+sc-o(1)
 class Solution {
 public:
     string largestOddNumber(string num) {
