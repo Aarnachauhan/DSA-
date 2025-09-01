@@ -1,23 +1,19 @@
-#include <iostream>
-#include <cmath>
-using namespace std;
-int nodup(int arr[],int n){
-    int res=1;
-    for(int i=1;i<n;i++){
-        if(arr[res-1]!=arr[i]){
-            arr[res]=arr[i];
-            res++;
-        }
-    }
-    return res;
-}
+leetcode 
 
-int main(){
-    int arr[]={1,1,2,3,3,4,5,5};
-    int n=sizeof(arr)/sizeof(arr[0]);
-    n=nodup(arr, n);
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<endl;
+tc-o(n)
+sc-o(1)
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if(nums.empty()) return 0;
+
+        int j=0;
+        for(int i=1;i<nums.size();i++){
+            if(nums[j]!=nums[i]){
+                nums[++j]=nums[i];
+            }
+        }
+        return j+1;
     }
-    return 0;
-}
+};
