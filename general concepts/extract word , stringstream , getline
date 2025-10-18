@@ -1,0 +1,278 @@
+leetcode 290 
+Perfect question, Aarna 🌸 — you’re diving into exactly the right details to really *understand* how this works. Let’s go step-by-step and make it super clear (with an example too).
+
+We’ll fully break down 👇
+
+* `stringstream ss(s)`
+* `getline(ss, token, ' ')`
+* what `token` does
+* how the rest of the code works
+
+---
+
+### 🧠 Problem Recap
+
+We’re solving **Leetcode 290 — Word Pattern**
+We need to check if a string `s` (like `"dog cat cat dog"`) follows a given `pattern` (like `"abba"`).
+
+---
+
+### 📜 Code
+
+```cpp
+bool wordPattern(string pattern, string s) {
+    vector<string> words;
+    stringstream ss(s);
+    string token;
+    int cntwords=0;
+
+    while(getline(ss, token, ' ')) {
+        words.push_back(token);
+        cntwords++;
+    }
+```
+
+Let’s break this first part carefully 👇
+
+---
+
+## 🔍 What is `stringstream ss(s);`
+
+Think of this like turning your string into a **stream of characters**, similar to how `cin` reads input.
+
+Example:
+
+```cpp
+string s = "dog cat cat dog";
+stringstream ss(s);
+```
+
+Now `ss` is like a pipe containing:
+
+```
+"dog cat cat dog"
+```
+
+---
+
+## 📦 What is `getline(ss, token, ' ')`
+
+👉 `getline()` reads **from `ss` until it finds a space `' '`**
+and stores that piece into `token`.
+
+Syntax:
+
+```cpp
+getline(source_stream, destination_variable, delimiter);
+```
+
+* `source_stream`: `ss`
+* `destination_variable`: `token`
+* `delimiter`: `' '` (space character)
+
+---
+
+So with `s = "dog cat cat dog"`, this loop:
+
+```cpp
+while(getline(ss, token, ' ')) {
+    words.push_back(token);
+}
+```
+
+works like this:
+
+| Iteration | token   | words vector after push_back |
+| --------- | ------- | ---------------------------- |
+| 1         | `"dog"` | ["dog"]                      |
+| 2         | `"cat"` | ["dog", "cat"]               |
+| 3         | `"cat"` | ["dog", "cat", "cat"]        |
+| 4         | `"dog"` | ["dog", "cat", "cat", "dog"] |
+
+When the stream runs out of text, `getline()` returns false and the loop stops.
+
+At the end:
+
+```
+words = ["dog", "cat", "cat", "dog"]
+cntwords = 4
+```
+
+---
+
+Now this part:
+
+```cpp
+int n = pattern.length();
+if (n != cntwords) {
+    return false;
+}
+```
+
+💡 If the number of words doesn’t match pattern’s length → it can’t match one-to-one, so return `false`.
+
+---
+
+Next:
+
+```cpp
+unordered_map<string,char> mpp;
+set<char> used;
+```
+
+* `mpp` maps **word → character** (e.g. `"dog" -> 'a'`)
+* `used` keeps track of **which pattern characters** are already assigned
+
+---
+
+### 🔁 The main loop:
+
+```cpp
+for (int i = 0; i < n; i++) {
+    string word = words[i];
+    char ch = pattern[i];
+
+    if (mpp.find(word) == mpp.end() && used.find(ch) == used.end()) {
+        used.insert(ch);
+        mpp[word] = ch;
+    } else if (mpp[word] != pattern[i]) {
+        return false;
+    }
+}
+```
+
+Let’s go line-by-line here:
+
+---
+
+#### 🧩 Case 1:
+
+`mpp.find(word) == mpp.end()` → word not mapped yet
+`used.find(ch) == used.end()` → pattern character not used yet
+
+➡️ So we create a new mapping:
+
+```cpp
+mpp[word] = ch;
+used.insert(ch);
+```
+
+Example (step by step):
+
+| i | pattern[i] | word  | mpp                        | used         | Action      |
+| - | ---------- | ----- | -------------------------- | ------------ | ----------- |
+| 0 | 'a'        | "dog" | { "dog": 'a' }             | { 'a' }      | new mapping |
+| 1 | 'b'        | "cat" | { "dog": 'a', "cat": 'b' } | { 'a', 'b' } | new mapping |
+| 2 | 'b'        | "cat" | already mapped             | { 'a', 'b' } | check match |
+| 3 | 'a'        | "dog" | already mapped             | { 'a', 'b' } | check match |
+
+---
+
+#### 🧩 Case 2:
+
+`else if (mpp[word] != pattern[i])`
+
+If word was already mapped but to a **different** pattern character → ❌ mismatch → `return false`.
+
+Example:
+
+```
+pattern = "abba"
+s = "dog cat cat fish"
+```
+
+When `i = 3`:
+
+* word = "fish"
+* ch = 'a'
+* mpp["fish"] doesn’t exist yet, but 'a' already used by "dog" → mismatch → false
+
+---
+
+Finally:
+
+```cpp
+return true;
+```
+
+If no mismatch found, everything matches perfectly ✅
+
+---
+
+### 🧠 Full Example Walkthrough
+
+Input:
+
+```
+pattern = "abba"
+s = "dog cat cat dog"
+```
+
+| Step             | i | ch  | word  | mpp (word→char)            | used         | Action      |
+| ---------------- | - | --- | ----- | -------------------------- | ------------ | ----------- |
+| 1                | 0 | 'a' | "dog" | { "dog": 'a' }             | { 'a' }      | new mapping |
+| 2                | 1 | 'b' | "cat" | { "dog": 'a', "cat": 'b' } | { 'a', 'b' } | new mapping |
+| 3                | 2 | 'b' | "cat" | match found                | same char    | ok          |
+| 4                | 3 | 'a' | "dog" | match found                | same char    | ok          |
+| ✅ Returns `true` |   |     |       |                            |              |             |
+
+---
+
+### 🌸 In Simple Words:
+
+* `stringstream ss(s)` → makes the string behave like input.
+* `getline(ss, token, ' ')` → reads one word at a time, split by space.
+* Each `token` is pushed into the `words` vector.
+* Then we check whether the pattern characters and words map consistently (1 word ↔ 1 char).
+
+---
+
+Would you like me to show a **dry run table** for a *false case* too (like `"abba"` with `"dog cat cat fish"`) to see where it breaks?
+
+
+code :
+
+
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        vector<string> words;
+        stringstream ss(s);
+
+        string token;
+        int cntwords=0;
+
+        while(getline(ss,token ,' ')){
+            words.push_back(token);
+            cntwords++;
+        }
+        int n=pattern.length();
+
+        if(n!=cntwords){
+            return false;
+        }
+
+        unordered_map<string,char> mpp;
+        set<char> used;
+        for(int i=0;i<n;i++){
+            string word=words[i];
+            char ch=pattern[i];
+
+
+            if(mpp.find(word)==mpp.end() && used.find(ch)==used.end()){
+                used.insert(ch);
+                mpp[word]=ch;
+            }else if(mpp[word]!=pattern[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+tc- o(n+m)
+sc-o(k)
+📈 Complexity
+Time complexity: O(n + m) — We split the string of length m and then iterate through the pattern of length n.
+Space complexity: O(k) — We use a hash map that stores at most k unique characters/words, where k is the number of unique characters in 
+the pattern. In the worst case, k can be equal to n, but it is at most 26 for lowercase English letters.
