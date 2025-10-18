@@ -15,7 +15,7 @@ int main() {
 	cin>>u>>v;
 	
 	adj[u][v]=1;
-	adj[v][u]=1;
+	adj[v][u]=1; //this will be removed in case of directed graph
    }
 	
 	return 0;
