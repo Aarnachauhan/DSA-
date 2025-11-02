@@ -1,6 +1,6 @@
 leetcode 547
-tc-o(n2)
-sc-o(n)+ o(n)
+tc-o(n) + o(v + 2E) //idk how , use chatgpt
+sc-o(n)+ o(n) = o(n)
 //visited array + recursion stack space
 
 class Solution {
