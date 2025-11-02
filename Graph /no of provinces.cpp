@@ -1,6 +1,7 @@
 leetcode 547
 tc-o(n2)
-sc-o(n)
+sc-o(n)+ o(n)
+//visited array + recursion stack space
 
 class Solution {
 public:
