@@ -1,5 +1,8 @@
 leetcode 733
-
+tc-o(n*m) = x nodes = for x nodes there will be 4 directions so 
+tc=o(x) + o(x*4) = o(n*m)
+sc=o(n*m) + o(n*m) + O( 2 arrays)
+ //for stack space and for matrix copy 
 
 class Solution {
 public:
