@@ -1,5 +1,8 @@
 lc 200
-
+Time complexity:
+O(m × n) → We visit each cell once.
+Space complexity:
+O(min(m, n)) → In the worst case, BFS queue holds all cells of the smallest dimension (like a snake of land).
 class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
