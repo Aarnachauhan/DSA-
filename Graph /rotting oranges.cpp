@@ -1,5 +1,6 @@
 lc 994
-
+sc -o(n*m)
+tc-O(m*n) + o(m*n *4 )
 
 class Solution {
 public:
