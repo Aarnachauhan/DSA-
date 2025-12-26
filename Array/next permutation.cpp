@@ -1,4 +1,4 @@
-//tc- o(3n)
+//tc- o(3n) = o(n)
 //sc-o(n) if we are considering modifying array as sc otherwise o(1)
 class Solution {
   public:
