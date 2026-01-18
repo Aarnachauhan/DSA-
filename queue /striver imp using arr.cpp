@@ -1,73 +1,49 @@
-using namespace std;
-class Queue {
-  int * arr;
-  int start, end, currSize, maxSize;
-  public:
-    Queue() {
-      arr = new int[16];
-      start = -1;
-      end = -1;
-      currSize = 0;
+class myQueue {
+    int* arr;
+    int size;
+    int front;
+    int rear;
+
+public:
+    myQueue(int n) {
+        size = n;
+        arr = new int[n];
+        front = 0;
+        rear = -1;
     }
 
-  Queue(int maxSize) {
-    ( * this).maxSize = maxSize;
-    arr = new int[maxSize];
-    start = -1;
-    end = -1;
-    currSize = 0;
-  }
-  void push(int newElement) {
-    if (currSize == maxSize) {
-      cout << "Queue is full\nExiting..." << endl;
-      exit(1);
+    bool isEmpty() {
+        return front > rear;
     }
-    if (end == -1) {
-      start = 0;
-      end = 0;
-    } else
-      end = (end + 1) % maxSize;
-    arr[end] = newElement;
-    cout << "The element pushed is " << newElement << endl;
-    currSize++;
-  }
-  int pop() {
-    if (start == -1) {
-      cout << "Queue Empty\nExiting..." << endl;
-    }
-    int popped = arr[start];
-    if (currSize == 1) {
-      start = -1;
-      end = -1;
-    } else
-      start = (start + 1) % maxSize;
-    currSize--;
-    return popped;
-  }
-  int top() {
-    if (start == -1) {
-      cout << "Queue is Empty" << endl;
-      exit(1);
-    }
-    return arr[start];
-  }
-  int size() {
-    return currSize;
-  }
 
+    bool isFull() {
+        return rear == size - 1;
+    }
+
+    void enqueue(int x) {
+        if (isFull()) {
+            cout << "Queue Overflow\n";
+            return;
+        }
+        rear++;
+        arr[rear] = x;
+    }
+
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "Queue Underflow\n";
+            return;
+        }
+        front++;
+    }
+
+    int getFront() {
+        if (isEmpty()) return -1;
+        return arr[front];
+    }
+
+    int getRear() {
+        if (isEmpty()) return -1;
+        return arr[rear];
+    }
 };
-
-int main() {
-  Queue q(6);
-  q.push(4);
-  q.push(14);
-  q.push(24);
-  q.push(34);
-  cout << "The peek of the queue before deleting any element " << q.top() << endl;
-  cout << "The size of the queue before deletion " << q.size() << endl;
-  cout << "The first element to be deleted " << q.pop() << endl;
-  cout << "The peek of the queue after deleting an element " << q.top() << endl;
-  cout << "The size of the queue after deleting an element " << q.size() << endl;
-
-  return 0;
-}
