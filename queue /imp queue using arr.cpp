@@ -1,3 +1,5 @@
+no platform found
+
 class myQueue {
     int* arr;
     int size;
