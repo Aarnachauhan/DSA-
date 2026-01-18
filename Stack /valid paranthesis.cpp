@@ -1,3 +1,7 @@
+leetcode 20
+tc-o(n)
+sc-o(n) //worst case
+
 class Solution {
 public:
     bool isValid(string s) {
