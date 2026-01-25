@@ -2,7 +2,13 @@ leetcode 547
 tc-o(n) + o(v + 2E) //idk how , use chatgpt
 sc-o(n)+ o(n) = o(n)
 //visited array + recursion stack space
+-----------------------------------------------
+tc according to chatgpt
+for each node , n cols are scanned . 
+so tc -o(n) * o(n) = o(n2) as we are using adj matrix
+sc- o(n) + o(n) //array + recursion stack space
 
+    
 class Solution {
 public:
 void dfs(int node , vector<bool> &vis, vector<vector<int>> &isConnected){
