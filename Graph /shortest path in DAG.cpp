@@ -1,4 +1,6 @@
 gfg
+read why we used topo sort only even when other algo will also work?
+note : all shortest distance algo will work here but as there is no one before 6 , topo will do the tc = o(V+E) which is very low than other algo.
 // User function Template for C++
 class Solution {
   private:
