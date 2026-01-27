@@ -2,6 +2,7 @@ gfg
 // User function Template for C++
 class Solution {
   private:
+  tc- O(V+E)
   void topo(stack<int> &st, vector<pair<int,int>> adj[], int vis[], int node){
       vis[node]=1;
       for(auto &it :adj[node]){ //& is used because we are not copying it , bus refernce le rhe hai
@@ -30,7 +31,8 @@ class Solution {
         }
         
         int vis[V]={0};
-        
+        //stack will give us total no of nodes = V  and for loop will run for total no of edges ( the for loop in while loop)
+       //so it will be O(V+E)
         stack<int> st;
         for(int i=0;i<V;i++){
             if(!vis[i]){
