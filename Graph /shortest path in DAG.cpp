@@ -4,7 +4,7 @@ class Solution {
   private:
   void topo(stack<int> &st, vector<pair<int,int>> adj[], int vis[], int node){
       vis[node]=1;
-      for(auto it :adj[node]){
+      for(auto &it :adj[node]){ //& is used because we are not copying it , bus refernce le rhe hai
           int v= it.first;
          
           
@@ -18,7 +18,7 @@ class Solution {
     vector<int> shortestPath(int V, int E, vector<vector<int>>& edges) {
         // code here
         //make a adj list
-        vector<pair<int,int>> adj[V];
+        vector<pair<int,int>> adj[V]; //this is array of V vectors
         //fill the adj list with edges
         for(int i=0;i<E;i++){
             int u=edges[i][0];
@@ -52,7 +52,7 @@ class Solution {
             
             
         //relax the all outgoing node to current node
-        for(auto it:adj[node]){
+        for(auto &it:adj[node]){
             int v=it.first;
             int wt=it.second;
             
