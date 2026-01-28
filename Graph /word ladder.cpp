@@ -1,7 +1,7 @@
 leetcode 127
-tc-o(N * wordlength*26)
+tc-o(N * wordlength*26 * log N )
 queue is running for No of words in world list = N
-
+log N is due to set.
 
 class Solution {
 public:
