@@ -1,5 +1,6 @@
 gfg
-
+tc-o(elogv)
+sc-o(e+v)
 class Solution {
   public:
     vector<int> dijkstra(int V, vector<vector<int>> &edges, int src) {
