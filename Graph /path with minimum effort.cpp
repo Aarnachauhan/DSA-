@@ -1,4 +1,6 @@
+
 leetcode 1631
+tc-o(elogv)
 class Solution {
 public:
     int minimumEffortPath(vector<vector<int>>& heights) {
