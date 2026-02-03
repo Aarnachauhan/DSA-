@@ -1,5 +1,5 @@
 c++ compiler
-
+tc-o(4 alpha) = o(constant)
   #include <bits/stdc++.h>
 using namespace std;
 
