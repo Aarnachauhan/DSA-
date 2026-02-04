@@ -1,4 +1,14 @@
 gfg
+Time Complexity: O(E * log E) or O(E * log V) 
+
+Sorting of edges takes O(E*logE) time. 
+After sorting, we iterate through all edges and apply the find-union algorithm. The find and union operations can take at most O(logV) time.
+So overall complexity is O(E*logE + E*logV) time. 
+The value of E can be at most O(V2), so O(logV) and O(logE) are the same. Therefore, the overall time complexity is O(E * logE) or O(E*logV)
+Auxiliary Space: O(E+V), where V is the number of vertices and E is the number of edges in the graph.
+
+
+    
 int findParent(vector<int> &parent, int x) {
     if (parent[x] != x) parent[x] = findParent(parent, parent[x]);
     return parent[x];
