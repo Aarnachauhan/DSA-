@@ -1,44 +1,28 @@
-#include <bits/stdc++.h>
-using namespace std;
-struct Node{
-    public:
-    int data;
-    Node* next;
-    public:
-    Node(int data1,Node* next1){
-         data=data1;
-         next=next1;
-    }
-    public:
-    Node(int data1){
-        data=data1;
-        next=nullptr;
+gfg
+
+class Solution {
+    
+  public:
+  int findlength(Node* slow , Node* fast){
+      int cnt=1;
+      fast=fast->next;
+      while(slow!=fast){
+          cnt++;
+          fast=fast->next;
+          
+      }
+      return cnt;
+  }
+    int lengthOfLoop(Node *head) {
+        // code here
+        Node* slow=head;
+        Node* fast=head;
+        
+        while(fast!=nullptr && fast->next!=nullptr){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast) return findlength(slow,fast);
+        }
+        return 0;
     }
 };
-Node* convert(vector<int> &a){
-    Node* head=new Node(a[0]);
-    Node* mover=head;
-    for(int i=1;i<a.size();i++){
-        Node* temp=new Node(a[i]);
-        mover->next=temp;
-        mover=temp;
-    }
-    return head;
-}
-int lengthoflist(Node* head){
-    int cnt=0;
-    Node* temp=head;
-    while(temp){ //jab tak temp valid h
-       // cout<<temp->data<<" ";
-        temp=temp->next;
-        cnt++;
-    }
-    return cnt;
-}
-
-int main(){
-    vector<int> a={222,3,5,6,7};
-    Node* head=convert(a);
-    cout<<"\n";
-    cout<<lengthoflist(head);
-}
