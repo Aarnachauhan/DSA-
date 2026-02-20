@@ -1,3 +1,6 @@
+lc 19
+tc-o(n)
+sc-o(1)
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
