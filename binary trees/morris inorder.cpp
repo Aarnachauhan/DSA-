@@ -1,5 +1,6 @@
 lc 94
-
+tc-o(n)
+sc-O(1)
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
