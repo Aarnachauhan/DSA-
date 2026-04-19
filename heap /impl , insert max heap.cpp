@@ -1,5 +1,5 @@
 no platform-- codechef
-
+output : 55 54 53 50 52 
   #include <bits/stdc++.h>
 using namespace std;
 
