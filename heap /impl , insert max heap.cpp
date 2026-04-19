@@ -1,6 +1,7 @@
 no platform-- codechef
 output : 55 54 53 50 52 
-  #include <bits/stdc++.h>
+tc-o(logn )
+#include <bits/stdc++.h>
 using namespace std;
 
 class heap{
