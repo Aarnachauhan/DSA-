@@ -1,5 +1,6 @@
 gfg
-
+tc-o(nlogn)
+sc-o(n)
 class Solution {
   public:
     void quickSort(vector<int>& arr, int low, int high) {
