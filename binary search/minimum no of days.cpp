@@ -1,50 +1,43 @@
 tc-o(n*(log(maxi-mini+1))
 sc 0(1)
 
-  class Solution {
-public: 
-
-bool possible(vector<int>&bloomDay,int day,int m,int k){
-int n=bloomDay.size();
-int cnt=0;
-int b=0;
-for(int i=0;i<n;i++){
-if(bloomDay[i]<=day){
-    cnt++;
+class Solution {
+public:
+int canmakebouquet(vector<int>& bloomDay, int day, int k){
+    int bouquetcount=0; 
+    int consecutive_count=0;
+    for(int i=0;i<bloomDay.size();i++){
+        if(bloomDay[i]<=day){
+            consecutive_count++;
+        }
+        else{
+            consecutive_count=0;
+        }
+        if(consecutive_count==k){
+            bouquetcount++;
+            consecutive_count=0;
+        }
+    }
+    return bouquetcount;
 }
-else{
-    b+=(cnt/k);
-    cnt=0;
-}
-}
-b+=(cnt/k);
-return b>=m;
-
-}
-
 
     int minDays(vector<int>& bloomDay, int m, int k) {
-        long long val=m*1LL * k*1LL;
-        if(val>bloomDay.size()) return -1;
+      int n=bloomDay.size();
+      int start=0 ;
+      int end= *max_element(bloomDay.begin(),bloomDay.end());
 
-        int mini=INT_MAX;
-        int maxi=INT_MIN;
-        for(int i=0;i<bloomDay.size();i++){
-            mini=min(mini,bloomDay[i]);
-            maxi=max(maxi,bloomDay[i]);
+      int minidays=-1;
+      while(start<=end){
+        int mid=start+(end-start)/2;
 
+        if(canmakebouquet(bloomDay,mid,k)>=m){
+            minidays=mid;
+            end=mid-1;
         }
-
-        int low=mini;
-        int high=maxi;
-        while(low<=high){
-            int mid=(low+high)/2;
-            if(possible(bloomDay,mid,m,k)){
-                high=mid-1;
-            }else{
-                low=mid+1;
-            }
+        else{
+            start=mid+1;
         }
-        return low;
+      }
+      return minidays;
     }
 };
