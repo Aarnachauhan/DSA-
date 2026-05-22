@@ -1,3 +1,24 @@
+gfg
+https://www.geeksforgeeks.org/problems/linked-list-insertion-1587115620/1
+
+class Solution {
+  public:
+    Node *insertAtEnd(Node *head, int x) {
+        // Code here
+      
+      Node* temp=new Node(x);
+      if(head==nullptr) return temp;
+      Node* cur=head;
+       while(cur->next!=nullptr ){
+           cur=cur->next;
+       }
+       cur->next=temp;
+       return head;
+    }
+};
+
+
+
 #include <iostream>
 using namespace std;
 struct Node{
