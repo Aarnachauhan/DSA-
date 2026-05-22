@@ -1,3 +1,18 @@
+gfg 
+https://www.geeksforgeeks.org/problems/linked-list-insertion-at-beginning/1
+
+class Solution {
+  public:
+    Node *insertAtFront(Node *head, int x) {
+        // Code here
+         Node* temp=new Node(x);
+        temp->next=head;
+        head=temp;
+        return head;
+    }
+};
+
+
 #include <iostream>
 using namespace std;
 
