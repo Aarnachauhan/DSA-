@@ -1,30 +1,40 @@
 lc 8
 class Solution {
 public:
-   int min = -2147483648;
+int min = -2147483648;
     int max = 2147483647;
-    int recursive(string &s,int i,int n,double ans,int sign){
-                 if(ans<min){return min;}
+
+int recursive(string &s , int i , int n , long long ans , int sign){
+    if(ans<min){return min;}
          if(ans>max){return max;}
-         if(i==n || s[i]>'9' || s[i]<'0'){return ans;}
-         if(sign==1) ans = ans*10 + (s[i]-'0');
-         if(sign== -1) ans = ans*10 - (s[i]-'0');
-         return recursive(s,i+1,n,ans,sign);
-    }
+
+  if(i==n || s[i]>'9' || s[i]<'0') return ans;
+  if(sign==-1){
+    ans=ans*10 - (s[i]-'0'); 
+  }
+  if(sign==1){
+    ans=ans*10 + (s[i]-'0');
+  }
+
+  return recursive(s,i+1,n , ans , sign);
+}
     int myAtoi(string s) {
-        int n = s.length();
-        int i=0;
-        while(s[i]==' ' && i<n){
+        int n=s.length();
+        int i=0; 
+        while(i<n && s[i]==' ') i++;
+        if(i==n) return 0;
+        int sign=1;
+        if(s[i]=='-'){
+          sign=-1;
+           i++;
+        } 
+        else if(s[i]=='+'){
             i++;
         }
-        int sign = 1;
-        if(s[i]=='-'){sign = -1; i++;}
-        else if(s[i]=='+'){i++;}
-        int ans = recursive(s,i,n,0,sign);
+        long long ans=recursive(s,i,n,0,sign);
         return ans;
     }
 };
-
 
 Alright Aarna, 
    let’s make this **super simple**, like I’m explaining to a 10-year-old 😃
