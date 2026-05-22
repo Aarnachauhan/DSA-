@@ -1,4 +1,4 @@
-lc 
+lc 8
 class Solution {
 public:
    int min = -2147483648;
