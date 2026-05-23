@@ -1,22 +1,18 @@
 lc 503
-
 class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
-        int n= nums.size();
-        vector<int> v(n,-1);
+        int n=nums.size();
+        if(n==0) return {};
+        vector<int> res(n,-1);
+        vector<int> st;
 
-        stack<int> st;
-        for(int i= 2*n-1;i>=0;i--){
-            while(!st.empty() && (nums[i%n]>=st.top())){
-                st.pop();
-            }
-
-            if(!st.empty() && (i<n)){
-                v[i]=st.top();
-            }
-            st.push(nums[i%n]);
+        for(int i=2*n-1; i>=0 ; --i){
+            int curr=nums[i%n];
+            while(!st.empty() && st.back()<=curr) st.pop_back();
+            if(i<n) res[i]=st.empty()?-1 : st.back();
+            st.push_back(curr);
         }
-        return v;
+        return res;
     }
 };
