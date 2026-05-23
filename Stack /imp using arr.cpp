@@ -6,12 +6,9 @@ class Stack {
     
 
 public:
-
     int Top = -1;
-
-    int Max = 0;
-
-    vector<int> st;
+   int Max = 0;
+ vector<int> st;
 
     
 
