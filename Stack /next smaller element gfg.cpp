@@ -5,20 +5,21 @@ class Solution {
     vector<int> nextSmallerEle(vector<int>& arr) {
         //  code here
         stack<int> st;
+        vector<int> res;
         int n=arr.size();
-        vector<int> ans(n);
         for(int i=n-1;i>=0;i--){
-            while(!st.empty() && arr[i]<=st.top()){
+            while(!st.empty()&& st.top()>=arr[i]){
                 st.pop();
             }
-            if(st.empty()) ans[i]=-1;
+            if(st.empty()){
+                res.push_back(-1);
+            }
             else{
-                ans[i]=st.top();
+            res.push_back(st.top());
             }
             st.push(arr[i]);
-            
         }
-        
-        return ans;
+        reverse(res.begin(),res.end());
+        return res;
     }
 };
