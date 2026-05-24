@@ -24,21 +24,79 @@ public:
 };
 
 optimal:
-tc-O(n+m)
 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        if(list1==nullptr || list2==nullptr){
-            return list1==nullptr? list2 : list1; 
-        } 
-        if(list1->val<=list2->val){
-            list1->next=mergeTwoLists(list1->next,list2);
-            return list1;
+
+ListNode* merge(ListNode* list1, ListNode* list2) {
+        // Create a dummy node
+        ListNode* dummyNode = new ListNode(-1);
+        
+        // Temp pointer to build merged list
+        ListNode* temp = dummyNode;
+
+        // Traverse both lists
+        while (list1 != nullptr && list2 != nullptr) {
+            // Choose smaller node
+            if (list1->val <= list2->val) {
+                temp->next = list1;
+                list1 = list1->next;
+            } else {
+                temp->next = list2;
+                list2 = list2->next;
+            }
+            // Move temp pointer
+            temp = temp->next;
         }
-        else{
-            list2->next=mergeTwoLists(list2->next, list1);
-            return list2;
+
+        // Attach remaining nodes
+        if (list1 != nullptr) {
+            temp->next = list1;
+        } else {
+            temp->next = list2;
         }
+
+        // Return head of merged list
+        return dummyNode->next;
+    }
+ListNode* findmid(ListNode* head){
+    if(head==nullptr || head->next==nullptr){
+        return  head;
+    }
+     ListNode* slow = head;
+        ListNode* fast = head->next;
+
+
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        return slow;
+}
+
+
+    ListNode* sortList(ListNode* head) {
+        if(head==nullptr || head->next==nullptr) return head;
+        ListNode* middle=findmid(head);
+
+        ListNode* right=middle->next;
+        middle->next=nullptr;
+        ListNode* left=head;
+
+        left=sortList(left);
+        right=sortList(right);
+
+        return merge(left,right);
     }
 };
