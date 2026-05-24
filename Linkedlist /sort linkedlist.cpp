@@ -24,7 +24,7 @@ public:
 };
 
 optimal:
-
+tc-O(n+m)
 
 class Solution {
 public:
