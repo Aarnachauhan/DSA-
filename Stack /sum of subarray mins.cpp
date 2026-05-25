@@ -1,26 +1,48 @@
-see striver's video
-leetcode 
+
+leetcode 907
   
-  class Solution {
+class Solution {
 public:
     int sumSubarrayMins(vector<int>& arr) {
         int n=arr.size();
-        const int MOD= 1e9+7;
-        long long res=0;
+        int MOD= 1e9+7;
+        vector<int> left(n) , right(n);
 
-        stack<int> st;
-        for(int i=0;i<=n;i++){
-            while(!st.empty() && (i==n || arr[st.top()] >= arr[i])){
-            int mid=st.top();
-            st.pop();
+        stack<int>st;
+        st.push(0);
+        left[0]=1; // 0th index ke liye ek subarray toh banega hi
+        for(int i=1;i<n;i++){
+            while(!st.empty() && arr[i] < arr[st.top()]) st.pop();
 
-            int left=st.empty()? mid+1 : mid-st.top();
-            int right=i-mid;
-
-            res=(res+(long long)arr[mid]*left*right)%MOD;
+            if(st.empty()) {
+                left[i]=i+1;
+            }
+            else {
+                left[i]=i-st.top();
+            }
+            st.push(i);
         }
-       st.push(i);
+
+
+        while(st.size()) st.pop();
+
+
+        st.push(n-1);
+        right[n-1]=1;
+        for(int i=n-2;i>=0;i--){
+            while(!st.empty()&& arr[i]<=arr[st.top()]) st.pop();
+
+            if(st.empty()) right[i]=n-i;
+            else right[i]=st.top()-i;
+            st.push(i);
         }
-        return res;
+
+        int res=0;
+        for(int i=0;i<n;i++){
+            long long prod=(left[i]*right[i])%MOD;
+            prod=(prod*arr[i])%MOD;
+            res=(res+prod)%MOD;
+        }
+        return res%MOD;
     }
 };
