@@ -7,7 +7,7 @@ public:
         int n=arr.size();
         int MOD= 1e9+7;
         vector<int> left(n) , right(n);
-
+        //left
         stack<int>st;
         st.push(0);
         left[0]=1; // 0th index ke liye ek subarray toh banega hi
@@ -26,7 +26,7 @@ public:
 
         while(st.size()) st.pop();
 
-
+        //right
         st.push(n-1);
         right[n-1]=1;
         for(int i=n-2;i>=0;i--){
@@ -36,7 +36,7 @@ public:
             else right[i]=st.top()-i;
             st.push(i);
         }
-
+        //return ans;
         int res=0;
         for(int i=0;i<n;i++){
             long long prod=(left[i]*right[i])%MOD;
