@@ -1,5 +1,25 @@
 lc 84
+brute force
+tc-o(n2)
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int maxarea=-1;
+        int n=heights.size();
+        for(int i=0;i<heights.size();i++){
+            int left=i-1;
+            int right=i+1;
+            while(left>=0 && heights[i]<=heights[left]) left--;
+            while(right<n && heights[i]<=heights[right]) right++;
 
+            int area=(right-left-1)*heights[i];
+            maxarea=max(area,maxarea);
+        }
+        return maxarea;
+    }
+};
+
+optimal
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
