@@ -19,29 +19,59 @@ public:
     }
 };
 
-optimal
+optimal : code written by me ( yayyy)))))))))) big winnn
 class Solution {
 public:
-    int largestRectangleArea(vector<int>& heights) {
-        stack<int> st;
-        int area=0, n=heights.size();
-
-        for(int i=0;i<n;i++){
-            while(!st.empty() && heights[i] < heights[st.top()]){
-              int bar=st.top(); st.pop();
-              int pse=st.empty() ? -1 : st.top();
-              int nse=i;
-              area=max(area, heights[bar]* (nse-pse-1));
-
+vector <int > prevsmaller(vector<int> &heights){
+   vector<int > prev(heights.size());
+   stack<int> st;
+   for(int i=0;i<heights.size();i++){
+     while(!st.empty() && heights[st.top()] >= heights[i]) {
+                st.pop();
             }
+
+            if(st.empty()) {
+                prev[i] = -1;
+            }
+            else {
+                prev[i] = st.top();
+            }
+
             st.push(i);
+   }
+   return prev;
+}
+
+vector<int> nextsmaller(vector<int> &heights){
+   vector<int > next(heights.size());
+   stack<int> st;
+   for(int i=heights.size()-1;i>=0;i--){
+    while(!st.empty() && heights[st.top()] >= heights[i]) {
+                st.pop();
+            }
+
+            if(st.empty()) {
+                next[i] = heights.size();
+            }
+            else {
+                next[i] = st.top();
+            }
+
+            st.push(i);
+   }
+   return next;
+}
+    int largestRectangleArea(vector<int>& heights) {
+        vector<int> prev= prevsmaller(heights);
+        vector<int> next= nextsmaller(heights);
+        int maxi=INT_MIN;
+        for(int i=0;i<heights.size();i++){
+            int right=next[i];
+            int left=prev[i];
+            int total=(right-left-1);
+            int area=heights[i]*total;
+            maxi=max(maxi,area);
         }
-        while(!st.empty()){
-            int bar=st.top(); st.pop();
-            int pse=st.empty()? -1:st.top();
-            int nse=n;
-            area=max(area, heights[bar]*(nse-pse-1));
-        }
-        return area;
+        return maxi;
     }
 };
