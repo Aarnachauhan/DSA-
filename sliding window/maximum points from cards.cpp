@@ -27,16 +27,23 @@ Code
 class Solution {
 public:
     int maxScore(vector<int>& cardPoints, int k) {
-        int res=0;
-        for(int i=0;i<k;i++) res+=cardPoints[i];
+        int leftsum=0;
+        int maxi=INT_MIN;
+        for(int i=0;i<k;i++) leftsum+=cardPoints[i];
+        maxi=leftsum;
+        
 
-        int curr=res;
+        int rightsum=0;
+        int curr=leftsum;
+        int right=cardPoints.size()-1;
         for(int i=k-1;i>=0;i--){
-            curr-=cardPoints[i];
-            curr+=cardPoints[cardPoints.size()-k+i];
+            leftsum-=cardPoints[i];
+            rightsum+=cardPoints[right];
+            right--;
 
-            res=max(res,curr);
+            maxi=max(maxi,rightsum+leftsum);
+            
         }
-        return res;
+        return maxi;
     }
 };
