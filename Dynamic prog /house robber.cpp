@@ -1,8 +1,23 @@
 leetcode 198
+
+recursion 
+class Solution {
+public:
+int helper(vector<int> & nums, int i){
+    if(i>=nums.size()) return 0;
+    int take=nums[i]+helper(nums,i+2);
+    int nottake=helper(nums,i+1);
+
+    return max(take , nottake);
+}
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        return helper(nums,0);
+    }
+};
+memorization 
 tc-o(n)
 sc-o(n) * o(N)
-memorization 
-
 
 class Solution {
 public:
