@@ -1,4 +1,4 @@
-gfg 
+gfg : https://www.geeksforgeeks.org/problems/nth-fibonacci-number1335/1
 tc-o(N)
 sc-o(n) + o(n) 
 //for recursion stack space and vector
@@ -49,21 +49,20 @@ class Solution {
 };
 
 //space optimization
-
-#include <iostream>
-using namespace std;
-
-int main()
-{
-  int n;
-  cin>>n;
-  int prev2=0;
-  int prev=1;
-  for(int i=2;i<=n;i++){
-      int cur_i=prev2+prev;
-      prev2=prev;
-      prev=cur_i;
-  }
-  cout<<prev;
-    return 0;
-}
+tc-o(n)
+sc-o(1)
+class Solution {
+  public:
+    int nthFibonacci(int n) {
+        // code here
+        if(n<=1) return n;
+        int prev2=0 , prev=1;
+       
+        for(int i=2;i<=n;i++){
+            int curr=prev2+prev;
+            prev2=prev;
+            prev=curr;
+        }
+        return prev;
+    }
+};
