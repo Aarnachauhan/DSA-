@@ -1,5 +1,23 @@
 naukri.com
+recursion 
+#include <bits/stdc++.h> 
+int solve(int ind , vector<int> &heights){
+    if(ind==0) return 0;
+    int left=solve(ind-1 , heights) + abs(heights[ind]-heights[ind-1]);
+    int right=INT_MAX;
+    if(ind>1){
+    right=solve(ind-2,heights) + abs(heights[ind]-heights[ind-2]);
+    }
+    return min(left,right);
+}
+int frogJump(int n, vector<int> &heights)
+{
+    // Write your code here.
+   return solve(n-1,heights);
 
+}
+
+------------------------------------------------------------------------------------
 memorization tc-o(n) sc-o(n) + o(n)
 #include <bits/stdc++.h> 
 #include <iostream>
@@ -24,7 +42,7 @@ int frogJump(int n, vector<int> &heights)
     vector<int> dp(n+1 , -1);
     return f(n-1,heights,dp);
 }
-
+-------------------------------------------------------------------------------------
 tabulation  --> bottom up
 tc=O(N)
 sc- O(n) //no stack space
