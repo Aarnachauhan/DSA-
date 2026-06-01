@@ -1,9 +1,21 @@
 no platform 
 tc-o(N)
 sc-o(n) + o(n) 
-//for recursion stack space and vector 
+//for recursion stack space and vector
 
+    
+//basic recursion 
+  class Solution {
+  public:
+    int nthFibonacci(int n) {
+        // code here
+        if(n<=1) return n;
+        
+        return nthFibonacci(n-1)+ nthFibonacci(n-2);
+    }
+};  
 
+    
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
