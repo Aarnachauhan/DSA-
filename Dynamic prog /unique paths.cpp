@@ -3,45 +3,40 @@ leetcode
 recursion--->
 tc- O(2^m*n)
 sc-O(path length) = O(m-1) + (n-1)
-
-
 class Solution {
 public:
-int rec(int i,int j, int m , int n){
+int f(int i, int j){
     if(i==0 && j==0) return 1;
-    if(i<0 && j<0) return 0;
+    if(i<0 ||  j<0) return 0;
 
-    //move up 
-    int up=rec(i-1,j,m,n);
+    int up=f(i-1,j);
+    int left=f(i,j-1);
 
-    //move left 
-    int left=rec(i,j-1,m,n);
-    return up + left;
+    return left+up;
 }
     int uniquePaths(int m, int n) {
-        return rec(m-1,n-1,m,n);
+        return f(m-1,n-1);
     }
 };
+
 
 memorization --->
 tc-o(m*n)
 sc- o(path length ) + o(m*n)
 class Solution {
 public:
-int rec(int i,int j, int m , int n,vector<vector<int>>&dp){
+int f(int i, int j,vector<vector<int>> &dp){
     if(i==0 && j==0) return 1;
-    if(i<0 || j<0) return 0;
-     if(dp[i][j]!=-1) return dp[i][j];
-    //move up 
-    int up=rec(i-1,j,m,n,dp);
+    if(i<0 ||  j<0) return 0;
+    if(dp[i][j]!=-1) return dp[i][j];
+    int up=f(i-1,j,dp);
+    int left=f(i,j-1,dp);
 
-    //move left 
-    int left=rec(i,j-1,m,n,dp);
-    return dp[i][j]=up + left;
+    return dp[i][j]=left+up;
 }
     int uniquePaths(int m, int n) {
         vector<vector<int>> dp(m,vector<int> (n,-1));
-        return rec(m-1,n-1,m,n,dp);
+        return f(m-1,n-1,dp);
     }
 };
 
