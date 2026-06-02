@@ -25,25 +25,22 @@ int f(int i , int j, vector<vector<int>> & a){
 memoization
 class Solution {
 public:
- int rec(int i,int j,  vector<vector<int>> &grid,vector<vector<int>>&dp){
-    if(i==0 && j==0) return dp[0][0];
-    if(i<0 || j<0) return INT_MAX;
-    if(dp[i][j]!= -1) return dp[i][j];
+int f(int i , int j, vector<vector<int>> & a, vector<vector<int>> & dp){
+ if(i==0 && j==0) return a[i][j];
+ if(i<0 || j<0) return 1e9;
+  
+  if(dp[i][j]!=-1) return dp[i][j];
+  int up=a[i][j]+ f(i-1, j,a,dp);
+  int left=a[i][j]+ f(i,j-1,a,dp);
 
-    //up 
-    int up= grid[i][j] + rec(i-1,j,grid,dp);
+ return dp[i][j]=min(left, up);
 
-    //left
-    int left=grid[i][j] + rec(i,j-1,grid,dp);
-    return dp[i][j]=min(up , left);
- }
+}
     int minPathSum(vector<vector<int>>& grid) {
-       int m=grid.size();
-       int n=grid[0].size();
-       vector<vector<int>> dp(m,vector<int> (n,-1));
-
-       return rec(m-1,n-1,grid,dp);
-        
+        int m=grid.size();
+        int n=grid[0].size();
+        vector<vector<int>> dp(m,vector<int> (n,-1));
+        return f(m-1,n-1, grid,dp);
     }
 };
 
