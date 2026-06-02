@@ -3,62 +3,54 @@ leetcode 120
 recursion
 tc-o(2^(1+2+3+ ....+n))
 sc-o(n) // recursive stack space
+
 class Solution {
 public:
-void rec(int row, int col , int val,int ans, int n, vector<vector<int>> & triangle){
-    if(row==n-1){ //we reached last row.
-       val+=triangle[row][col];
-       ans=min(ans,val);
-       return ;
-    }
-    else{
-        val+=triangle[row][col]; //store the current
-        //down
-        rec(row+1,col,val, ans,n, triangle);
-        //diagonal
-        rec(row+1,col+1,val,ans,n,triangle);
+int f(int i , int j , int n, vector<vector<int>> & a){
+     if(i==n-1) return a[n-1][j];
+     int down=a[i][j] + f(i+1,j,n,a);
+     int diag=a[i][j]+ f(i+1, j+1, n , a);
 
-    }
+     return min(down , diag);
 }
     int minimumTotal(vector<vector<int>>& triangle) {
-        int ans=INT_MAX;
         int n=triangle.size();
-        rec(0,0,0,ans,n,triangle);
-        return ans;
+        return f(0,0,n,triangle);
     }
 };
+
 
 memo
 tc- o(n*n)
 sc-o(n*n) //for matrix , no recursive stack space
+
 class Solution {
 public:
-int rec(int row, int col ,int n, vector<vector<int>> & triangle, vector<vector<int>> & dp){
-    if(row>n-1) return 0;
-    if(dp[row][col]!=INT_MAX) return dp[row][col];
+int f(int i , int j , int n, vector<vector<int>> & a, vector<vector<int>> &dp){
+     if(i>n-1) return 0;
+     if(dp[i][j]!=INT_MAX)return dp[i][j];
+     
+     int down=a[i][j] + f(i+1,j,n,a,dp);
+     int diag=a[i][j]+ f(i+1, j+1, n,a,dp);
 
-    int val= triangle[row][col];
-    int i= rec(row+1,col,n,triangle,dp);
-    int j=rec(row+1, col+1, n , triangle,dp);
+     dp[i][j] = min(down,diag);
 
-    dp[row][col] = min(i,j) + val;
-    return dp[row][col];
+     return dp[i][j];
 }
     int minimumTotal(vector<vector<int>>& triangle) {
-        
         int n=triangle.size();
-        vector<vector<int>>dp;
+        vector<vector<int>> dp;
         for(int i=0;i<n;i++){
-            int cur=triangle[i].size();
-            vector<int> temp(cur,INT_MAX);
+            int curr=triangle[i].size();
+            vector<int> temp(curr,INT_MAX);
             dp.push_back(temp);
         }
-
-
-         return rec(0,0,n,triangle,dp);
         
+        return f(0,0,n,triangle,dp);
     }
 };
+
+
 
 tabulation
 tc-o(n*n)
