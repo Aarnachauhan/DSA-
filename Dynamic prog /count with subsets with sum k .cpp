@@ -1,37 +1,62 @@
-gfg -  problem and solved using gfg article
+gfg -  problem and solved using gfg article - perfect sum problem
+recursion
+class Solution {
+  public:
+  
+ int f(int i , int curr, int target, vector<int> &a){
+     if(i<0){
+         return curr==target;
+     }
+     int notpick=f(i-1,curr,target,a);
+     int pick=0;
+     if(curr+a[i]<=target){
+         
+         pick=f(i-1,curr+a[i],target,a);
+     }
+     
+     return pick+notpick;
+     
+ }
+    int perfectSum(vector<int>& arr, int target) {
+        // code here
+        int n=arr.size();
+        return f(n-1,0,target,arr);
+        
+    }
+};
 
+--------------------------------------------------------------------------------------------------------------------
 memo
 tc-O(n*target) 
 sc-o(n*target) + o(n)
 class Solution {
   public:
-int countsubset(int i , int currsum , int target , vector<int> &arr ,
-vector<vector<int>>&dp , int n){
-    if(i==n){
-        return (currsum == target);
-    }
-    
-    if(dp[i][currsum]!=-1) return dp[i][currsum];
-    
-    int nottake = countsubset(i+1, currsum ,target , arr, dp , n);
-    
-    int take=0;
-    if(arr[i] + currsum <=target ){
-        take= countsubset(i+1 ,currsum +arr[i], target , arr, dp , n);
-        
-    }
-    return dp[i][currsum] = (take + nottake);
-    
-}
+  
+ int f(int i , int curr, int target, vector<int> &a,
+ vector<vector<int>> &dp){
+     if(i<0){
+         return curr==target;
+     }
+     if(dp[i][curr]!=-1) return dp[i][curr];
+     int notpick=f(i-1,curr,target,a,dp);
+     int pick=0;
+     if(curr+a[i]<=target){
+         
+         pick=f(i-1,curr+a[i],target,a,dp);
+     }
+     
+     return dp[i][curr]=pick+notpick;
+     
+ }
     int perfectSum(vector<int>& arr, int target) {
         // code here
         int n=arr.size();
+        vector<vector<int>> dp(n, vector<int> (target+1,-1));
+        return f(n-1,0,target,arr,dp);
         
-        vector<vector<int>> dp(n+1, vector<int> (target + 1 , -1));
-        
-        return countsubset(0,0,target,arr,dp, n);
     }
 };
+----------------------------------------------------------------------------------------------------
 
 tabulation 
 tc- o(n*target)
@@ -39,61 +64,70 @@ sc- o(n* target)
 
 class Solution {
   public:
-   
-
+  
     int perfectSum(vector<int>& arr, int target) {
         // code here
         int n=arr.size();
+        vector<vector<int>> dp(n, vector<int> (target+1,0));
+        if(arr[0] == 0)
+            dp[0][0] = 2;
+        else
+            dp[0][0] = 1;
+
+        if(arr[0] != 0 && arr[0] <= target)
+            dp[0][arr[0]] = 1;
+
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=target;j++){
+                int notpick=dp[i-1][j];
+                   int pick=0;
+                  if(j>=arr[i]){
+                    pick=dp[i-1][j-arr[i]];
+                    }
+     
+                   dp[i][j]=pick+notpick;
+            }
+            
+        }
+        return dp[n-1][target];
         
-        vector<vector<int>> dp(n+1, vector<int> (target + 1 , 0));
-        
-      dp[0][0] = 1;
-      
-      for(int i=1;i<=n;i++){
-          for(int j=0;j<=target; j++){
-              
-             //not take
-             dp[i][j]= dp[i-1][j];
-             
-             //take
-             if(j>=arr[i-1]){
-                  dp[i][j] += dp[i - 1][j - arr[i - 1]];
-             }
-          }
-      }
-      return dp[n][target];
     }
 };
+--------------------------------------------------------------------------------------------
 
 space opti
 tc- o(n*target)
 sc- o(n)
   class Solution {
   public:
-   
-
+  
     int perfectSum(vector<int>& arr, int target) {
         // code here
         int n=arr.size();
-        
-       vector<int> prev(target+1 , 0);
-        
-       prev[0]=1; //achiving sum of 0 by taking no element
       
-      for(int i=1;i<=n;i++){
-          vector<int> curr(target+1,0);
-          for(int j=0;j<=target; j++){
-              
-             //not take
-             curr[j]= prev[j];
-             
-             //take
-             if(j>=arr[i-1]){
-                  curr[j] += prev[j - arr[i - 1]];
-             }
-          }
-          prev=curr;
-      }
-      return prev[target];
+        vector<int> prev(target+1,0) , curr(target+1,0);
+        if(arr[0] == 0)
+            prev[0] = 2;
+        else
+            prev[0] = 1;
+
+        if(arr[0] != 0 && arr[0] <= target)
+            prev[arr[0]] = 1;
+
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=target;j++){
+                int notpick=prev[j];
+                   int pick=0;
+                  if(j>=arr[i]){
+                    pick=prev[j-arr[i]];
+                    }
+     
+                   curr[j]=pick+notpick;
+            }
+            prev=curr;
+            
+        }
+        return  prev[target];
+        
     }
 };
