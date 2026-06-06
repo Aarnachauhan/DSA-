@@ -1,21 +1,27 @@
 gfg
 subset sum problem 
 recursion
-f(int i , int target){
-            if(target==0) return true;
-            if(i==0) return (arr[0]==target)
-            
-            bool nottake=f(i-1,target);
-            bool take=false;
-            if(target>=arr[i]){
-                take=f(i-1,target-arr[i]);
-            }
-            return take+nottake;
-        }
-
-
+TC-O(2^N)
+SC-O(N)
+#include <bits/stdc++.h> 
+int f(int ind, int k,vector<int> &a){
+    if(k==0) return true;
+    if(ind==0) return a[0]==k;
+    bool nottake=f(ind-1,k,a);
+    bool take=false;
+    if(k>=a[ind]){
+        take=f(ind-1,k-a[ind],a);
+    }
+    return take|| nottake;
+}
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    // Write your code here.
+   
+    return f(n-1,k,arr);
+}
+--------------------------------------------------------------------------------------------------------
 memorization 
-tc- o(n* sum)
+tc- o(n* target)
 sc- o(n* target) * o(n)
 class Solution {
   public:
@@ -45,9 +51,10 @@ class Solution {
         return subsetsum(n-1, dp , arr , sum );
     }
 };
-
+--------------------------------------------------------------------------------------------
 tabulation
-
+tc-o(n*target)
+sc-o(n*target)
 
 class Solution {
   public:
@@ -76,7 +83,6 @@ class Solution {
                 bool take= false;
                 if(arr[ind]<=j){
                     take=dp[ind-1][j-arr[ind]];
-                   // take=true;
                 }
                 
                 dp[ind][j]= nottake || take;
@@ -87,4 +93,26 @@ class Solution {
 };
 
 
-space optimization is left
+space optimization 
+Tc-O(n*target)
+SC-o(target)
+#include <bits/stdc++.h> 
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    // Write your code here.
+    vector<bool> prev(k+1,0) , curr(k+1,0);
+    prev[0]=curr[0]=true;
+    prev[arr[0]]=true; //dp[0][arr[0]]=true;
+    for(int ind=1;ind<n;ind++){
+        for(int target=1;target<=k;target++){
+            bool nottake=prev[target]; //dp[ind-1][target];
+            bool take=false;
+            if(arr[ind]<=target){
+                take=prev[target-arr[ind]]; //dp[ind-1][target-arr[i]];
+            }
+
+           curr[target]=take || nottake; //dp[ind][target]
+        }
+        prev=curr;
+    }
+    return prev[k]; //dp[n-1][sum];
+}
