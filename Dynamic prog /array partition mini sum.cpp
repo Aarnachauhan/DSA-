@@ -31,6 +31,8 @@ int minSubsetSumDifference(vector<int>& arr, int n)
 			mini=min(mini,abs(s1-s2));
 		}
 	}
+return mini;
+}
 
   ---------------------------------------------------------------------------------------------------------
  memoization 
