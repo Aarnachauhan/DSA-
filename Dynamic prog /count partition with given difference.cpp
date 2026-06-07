@@ -105,5 +105,43 @@ class Solution {
 
 -----------------------------------------------------------------
 space optimization 
+class Solution {
+  public:
+  
 
+    int countPartitions(vector<int>& arr, int diff) {
+        // Code here
+        int n=arr.size();
+        int totalsum=accumulate(arr.begin(),arr.end(),0);
+        if(totalsum-diff <0 ||(totalsum-diff)%2!=0 ) return 0;
+        
+        int target=(totalsum-diff)/2;
+        
+        vector<int> prev(target+1,0) , curr(target+1,0);
+      
+        if(arr[0]==0){
+            prev[0]=2;
+        }
+        else{
+           prev[0]=1;
+        }
+        if(arr[0] != 0 && arr[0] <= target)
+        prev[arr[0]] = 1;
+        
+        
+        for(int i=1;i<n;i++){
+            for(int j=0; j<=target;j++){
+                int notpick=prev[j];
+                int pick=0;
+                if(arr[i]<=j){
+                    pick=prev[j-arr[i]];
+                }
+                curr[j]=pick+notpick;
+            }
+            prev=curr;
+        }
+        
+      return prev[target];  
+    }
+};
 
