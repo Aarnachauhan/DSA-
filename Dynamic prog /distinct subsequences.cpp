@@ -73,16 +73,15 @@ public:
 space optimization  -- 2 d 
 class Solution {
 public:
-
-    int numDistinct(string s, string t) {
-        int n=s.length();
+int numDistinct(string s, string t) {
+         int n=s.length();
         int m=t.length();
         vector<unsigned long long> prev(m+1,0) ,  curr(m+1,0);
        
-       prev[0]=1;
+       prev[0]=curr[0]=1;
        
        for(int i=1;i<=n;i++){
-        curr[0]=1;
+    
         for(int j=1;j<=m;j++){
             if(s[i-1]==t[j-1]){
                 curr[j]=prev[j-1] + prev[j]; 
