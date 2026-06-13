@@ -43,6 +43,8 @@ int f(int i , int pindex , vector<int> &nums,vector<vector<int>> &dp){
 };
 
 tabulation
+tc-o(n2)
+sc-o(n)*2
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
