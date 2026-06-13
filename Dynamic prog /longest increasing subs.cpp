@@ -1,4 +1,35 @@
 lc 300
+best solution :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 recursion
 class Solution {
