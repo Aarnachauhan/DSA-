@@ -1,5 +1,5 @@
 lc 1048
-
+tc-o(n2* length of the string)
 class Solution {
 public:
 bool check(string &s1, string &s2){
