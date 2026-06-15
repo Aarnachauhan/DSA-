@@ -34,3 +34,35 @@ void dfs(int node , vector<bool> &vis, vector<vector<int>> &isConnected){
         return cnt;
     }
 };
+
+using bfs
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int n=isConnected.size();
+        vector<int> vis(n,0);
+        int cnt=0;
+        for(int i=0;i<n;i++){
+          if(!vis[i]){
+            cnt++;
+
+            queue<int> q;
+            q.push(i);
+            vis[i]=1;
+            while(!q.empty()){
+                int node=q.front();
+                q.pop();
+
+                for(int neigh=0;neigh<n;neigh++){
+                  if(isConnected[node][neigh]==1 && 
+                  !vis[neigh]){
+                    vis[neigh]=1;
+                    q.push(neigh);
+                  }
+                }
+            }
+          }
+        }
+       return cnt;
+    }
+};
