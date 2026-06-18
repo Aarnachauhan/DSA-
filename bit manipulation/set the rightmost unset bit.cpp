@@ -1,9 +1,9 @@
 gfg
-class Solution {
-  public:
-    int setBit(int n) {
-        // Write Your Code here
-     n=n | n+1;
-     return n;
+int setBits(int N){
+    // Write your code here.
+    int n=N;
+    if((n&(n+1))==0) return n;
+    else{
+        return (n| (n+1));
     }
-};
+}
