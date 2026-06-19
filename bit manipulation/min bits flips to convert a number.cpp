@@ -5,13 +5,27 @@ tc-o(31)
 class Solution {
 public:
     int minBitFlips(int start, int goal) {
-        int xorresult=start^goal;
-        int ans=0;
-
-        while(xorresult>0){
-          ans+=xorresult & 1;
-          xorresult>>=1; 
+        int x=start^ goal;
+        int cnt=0;
+        while(x){
+            cnt+=(x&1);
+            x>>=1;
         }
-        return ans;
+        return cnt;
+    }
+};
+
+
+better approach 
+class Solution {
+public:
+    int minBitFlips(int start, int goal) {
+        int x=start^ goal;
+        int cnt=0;
+        while(x){
+            x=x&(x-1); //removes rightmost unset bits
+            cnt++;
+        }
+        return cnt;
     }
 };
