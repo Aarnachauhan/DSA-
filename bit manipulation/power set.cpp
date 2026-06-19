@@ -6,16 +6,17 @@ class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
         int n=nums.size();
-        int total=pow(2,n)-1;
-
-        vector<vector<int>>ans;
-        for(int i=0;i<=total;i++){ //2^n
-            vector<int> sub;
-            for(int j=0;j<n;j++){ //n
-                if(i&(1<<j)) sub.push_back(nums[j]);
+        vector<vector<int>> ans;
+        for(int mask=0;mask < ( 1 << n ) ; mask++){
+            vector<int> subset;
+            for(int i=0;i<n;i++){
+                if(mask&(1<<i)){
+                    subset.push_back(nums[i]);
+                }
             }
-            ans.push_back(sub);
+            ans.push_back(subset);
         }
         return ans;
     }
+};    }
 };
