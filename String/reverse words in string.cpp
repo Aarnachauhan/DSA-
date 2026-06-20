@@ -1,6 +1,6 @@
 lc 151
 tc-O(n) , as both for and while loop is updating the same i
-
+sc-o(n)
 class Solution {
 public:
     string reverseWords(string s) {
@@ -100,3 +100,7 @@ Skip.
 
 🔹 Iteration 7: i = 12
 word = ""
+
+
+optimised approach ( sc-o(1)
+    
