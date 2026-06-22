@@ -1,7 +1,7 @@
 lc 
 tc-o(n + mlogm) //m is the no of unique elements , n is total no of elements
 sc-O(n)
-
+bucket sort solution:
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
@@ -27,5 +27,45 @@ public:
         }
         return ans;
         
+    }
+};
+
+
+min heap
+tc-o(n+ mlogk)
+sc-o(m+k)
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+
+        unordered_map<int,int> freq;
+
+        for(int x : nums)
+            freq[x]++;
+
+        priority_queue<
+            pair<int,int>,
+            vector<pair<int,int>>,
+            greater<pair<int,int>>
+        > pq;
+
+        for(auto &it : freq) {
+
+            pq.push({it.second, it.first});
+
+            if(pq.size() > k)
+                pq.pop();
+        }
+
+        vector<int> ans;
+
+        while(!pq.empty()) {
+
+            ans.push_back(pq.top().second);
+            pq.pop();
+        }
+
+        return ans;
     }
 };
