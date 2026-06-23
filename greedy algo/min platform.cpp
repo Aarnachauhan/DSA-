@@ -3,23 +3,30 @@ sc-O(1)
 
 
 gfg
-
-int findPlatform(vector<int>& arr, vector<int>& dep) {
-        // Your code here
-        sort(arr.begin(),arr.end()); 
+class Solution {
+  public:
+    int minPlatform(vector<int>& arr, vector<int>& dep) {
+        // code here
+        int n=arr.size();
+        int res=0;
+        
+        sort(arr.begin(),arr.end());
         sort(dep.begin(),dep.end());
-        //dono sorting= 2nlogn
-        int a=0,d=0,out=0,accum=0;
-        while(a<arr.size()){ //2n - we can traverse both the arrays.
-            if(arr[a]<=dep[d]){
-                accum++;
-                a++;
+        
+        int i=0, j=0;
+        int platform=0 , maxi=0;
+        
+        while(i<n && j<n){
+            if(arr[i]<=dep[j]){
+                platform++;
+                maxi=max(maxi,platform);
+                i++;
             }
             else{
-                accum--;
-                d++;
+                platform--;
+                j++;
             }
-            out=max(out,accum);
         }
-        return out;
+        return maxi;
     }
+};
