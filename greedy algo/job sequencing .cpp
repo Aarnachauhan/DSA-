@@ -1,5 +1,5 @@
 gfg
-
+this solution give tle for 10-15 test cases
 class Solution {
   public:
     vector<int> jobSequencing(vector<int> &deadline, vector<int> &profit) {
@@ -36,6 +36,8 @@ class Solution {
     }
 };
 
+
+doesnt give tle:
 using pq:
 
 vector<int> jobSequencing(vector<int> &deadline, vector<int> &profit) {
