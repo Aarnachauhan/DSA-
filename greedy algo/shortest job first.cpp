@@ -1,5 +1,5 @@
 gfg
-tc-o(n) + o(nlogn) 
+tc-o(n) + o(nlogn) = nlogn
   sc=o(1)
 
   class Solution {
