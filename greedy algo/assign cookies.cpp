@@ -1,6 +1,23 @@
 lc 455
-tc- nlogn +mlogm +m
-as while loop is working on m 
+Time Complexity
+
+Sorting students:
+
+O(n log n)
+
+Sorting cookies:
+
+O(m log m)
+
+Two-pointer traversal:
+
+O(n+m)
+
+Total:
+
+O(n log n + m log m)
+
+
 sc= o(1)
 
 class Solution {
