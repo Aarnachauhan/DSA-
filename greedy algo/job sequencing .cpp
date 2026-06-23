@@ -1,6 +1,42 @@
 gfg
 
-idk how the code works
+class Solution {
+  public:
+    vector<int> jobSequencing(vector<int> &deadline, vector<int> &profit) {
+        // code here
+        int n=deadline.size();
+        vector<pair<int,int>> jobs;
+        for(int i=0;i<n;i++){
+            jobs.push_back({profit[i],deadline[i]});
+        }
+        
+        sort(jobs.begin(),jobs.end(),greater<pair<int,int>>());
+        
+        int maxideadline=*max_element(deadline.begin(),deadline.end());
+        
+        vector<int> slots(maxideadline+1,-1);
+        int cnt=0 , maxprofit=0;
+        
+        for(int i=0;i<n;i++){
+            int currprofit=jobs[i].first;
+            int currdeadline=jobs[i].second;
+            
+            for(int j=currdeadline;j>=1;j--){
+                if(slots[j]==-1){
+                    cnt++;
+                    slots[j]=1;
+                    maxprofit+=currprofit;
+                    
+                    break;
+                }
+            }
+        }
+        return {cnt,maxprofit};
+        
+    }
+};
+
+using pq:
 
 vector<int> jobSequencing(vector<int> &deadline, vector<int> &profit) {
         // code here
