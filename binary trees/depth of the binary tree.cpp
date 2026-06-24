@@ -1,4 +1,23 @@
 lc 104
+
+
+recursive code
+tc-o(n)
+sc-o(h)
+
+int maxDepth(TreeNode* root) {
+
+    if(root == NULL)
+        return 0;
+
+    int leftHeight = maxDepth(root->left);
+    int rightHeight = maxDepth(root->right);
+
+    return 1 + max(leftHeight, rightHeight);
+}
+
+level order traversal code:
+
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
