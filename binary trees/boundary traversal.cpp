@@ -21,8 +21,8 @@ void rightboundary(TreeNode<int> *root,vector<int> &res){
      vector<int> temp;
  while(cur){
      if(!isLeaf(cur)) temp.push_back(cur->data);
-     if(cur->right) cur=cur->right; // go to left and then add its value to ds
-     else cur=cur->left; //if there is no left and it is not a leaf node then go to right
+     if(cur->right) cur=cur->right; // go to right and then add its value to ds
+     else cur=cur->left; //if there is no right and it is not a leaf node then go to left
  }
  for(int i=temp.size()-1;i>=0;i--){ //adding temp reverse krke
      res.push_back(temp[i]);
