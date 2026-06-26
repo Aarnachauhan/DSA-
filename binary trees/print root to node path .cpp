@@ -2,23 +2,22 @@ naukri.com
 problem name : path in a tree
 
 
+bool solve(TreeNode<int> *root, int x, vector<int> &path){
+	if(root==nullptr) return false;
+	path.push_back(root->data);
 
-bool path(TreeNode<int> *root , vector<int> &arr, int x){
-	if(!root){
-		return false;
-	}
-	arr.push_back(root->data);
 	if(root->data==x) return true;
+    if(solve(root->left,x,path)) return true;
+	if(solve(root->right,x,path)) return true;
 
-	if(path(root->left , arr, x) || path(root->right,arr,x)) return true;
-
-	arr.pop_back();
+	path.pop_back();
 	return false;
 }
+
 vector<int> pathInATree(TreeNode<int> *root, int x)
 {
     // Write your code here.
-	vector<int> arr;
-	if(root==nullptr) return arr;
-	path(root,arr,x);
+	vector<int> path;
+	solve(root,x,path);
+	return path;
 }
