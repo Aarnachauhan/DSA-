@@ -2,18 +2,19 @@ lc 101
 tc-o(n)
 sc-o(n)
 
-class Solution {
-public:
-    bool isSymmetric(TreeNode* root) {
-        return root==nullptr || isSymmetricHelp(root->left,root->right);
-    }
+bool mirror(BinaryTreeNode<int>*left, BinaryTreeNode<int>* right){
+    if(left==nullptr && right==nullptr) return true;
+    if(left==nullptr || right==nullptr) return false;
+    if(left->data!=right->data) return false;
 
-    bool isSymmetricHelp(TreeNode* left, TreeNode* right){
-        if(left==nullptr || right==nullptr ) return left==right;
+    return mirror(left->left , right->right) && mirror(left->right , right->left);
+}
 
-        if(left->val!=right->val) return false;
+bool isSymmetric(BinaryTreeNode<int>* root)
+{
+    if(root==nullptr) return true;
 
-        return isSymmetricHelp(left->left , right->right) && isSymmetricHelp(left->right , right->left);
+    return mirror(root->left,root->right);
 
-    }
-};
+
+}
