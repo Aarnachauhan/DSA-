@@ -1,6 +1,6 @@
 lc 700
 tc-o(log2n)
-sc-
+sc-o(1)
 
 iterative:
     class Solution {
@@ -24,6 +24,8 @@ public:
 
 
 recursive
+tc-o(logn)
+sc-O(logn)
 class Solution {
 public:
     TreeNode* searchBST(TreeNode* root, int val) {
