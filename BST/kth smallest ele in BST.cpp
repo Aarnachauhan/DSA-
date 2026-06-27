@@ -1,5 +1,5 @@
 lc 230
-better
+brute:
 class Solution {
 public:
 void inorder(TreeNode* root, vector<int> &v){
@@ -12,6 +12,32 @@ void inorder(TreeNode* root, vector<int> &v){
         vector<int> v;
         inorder(root,v);
         return v[k-1];
+    }
+};
+better:
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+
+        stack<TreeNode*> st;
+
+        while(true){
+
+            while(root){
+                st.push(root);
+                root = root->left;
+            }
+
+            root = st.top();
+            st.pop();
+
+            k--;
+
+            if(k == 0)
+                return root->val;
+
+            root = root->right;
+        }
     }
 };
 
