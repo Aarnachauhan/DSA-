@@ -15,6 +15,8 @@ void inorder(TreeNode* root, vector<int> &v){
     }
 };
 better:
+tc-o(h+k)
+sc-o(h) //worst-> o(n)
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
