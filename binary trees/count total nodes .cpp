@@ -1,5 +1,18 @@
 lc 222
+better solution:
+tc-o(n)
+sc-o(h)
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        if(root==nullptr) return 0;
 
+        return 1+ countNodes(root->left) + countNodes(root->right);
+    }
+};
+
+
+optimal solution:
 class Solution {
 public:
     int countNodes(TreeNode* root) {
