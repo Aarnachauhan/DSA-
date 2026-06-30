@@ -57,4 +57,67 @@ public:
 };
 
 
+
 most optimised :
+tc-o(n)
+sc-o(h) + o(h)= o(h)
+class BSTITERATOR {
+public:
+    stack<TreeNode*> st;
+    bool reverse;
+
+    BSTITERATOR(TreeNode* root, bool isReverse) {
+        reverse = isReverse;
+        pushAll(root);
+    }
+
+    void pushAll(TreeNode* root) {
+        while (root) {
+            st.push(root);
+
+            if (reverse)
+                root = root->right;
+            else
+                root = root->left;
+        }
+    }
+
+    int next() {
+        TreeNode* node = st.top();
+        st.pop();
+
+        if (reverse)
+            pushAll(node->left);
+        else
+            pushAll(node->right);
+
+        return node->val;
+    }
+
+    bool hasNext() {
+        return !st.empty();
+    }
+};
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int k) {
+        if(!root) return false;
+        BSTITERATOR left(root, false); //smallest iterator
+        BSTITERATOR right(root,true); //largest iterator
+
+        int i=left.next();
+        int j=right.next();
+        while(i<j){
+            int sum=i+j;
+            if(sum==k) return true;
+            if(sum<k){
+                i=left.next();
+            }
+            else{
+                j=right.next();
+            }
+
+        }
+       return false;
+    }
+};
