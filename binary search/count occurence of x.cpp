@@ -1,4 +1,52 @@
 class Solution {
+  public:
+ int lowerbound(vector<int> & nums  , int target){
+    int n=nums.size();
+    int low=0 , high=n-1;
+    int ans=n;
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(nums[mid]>=target){
+            ans=mid;
+            high=mid-1;
+        }
+        else low=mid+1;
+    }
+    return ans;
+}
+int upperbound(vector<int> & nums , int target){
+    int low=0;
+        int n=nums.size();
+        int high=n-1;
+        int ans=n;
+        while(low<=high){
+            int mid=(low+high)/2;
+            //maybe the answer
+            if(nums[mid]>target){
+                ans=mid;
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return ans;
+}
+    int countFreq(vector<int>& arr, int target) {
+        // code here
+        int lb=lowerbound(arr,target);
+        int ub=upperbound(arr,target);
+        int last=ub-1;
+        int n=arr.size();
+
+        return (last-lb+1);
+    }
+};
+
+or
+
+
+class Solution {
 public:
   int firstocc(vector<int> &arr,int n,int target){
 int low=0;
