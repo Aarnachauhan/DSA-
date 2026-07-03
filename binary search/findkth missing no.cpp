@@ -1,3 +1,10 @@
+
+expected = i + 1
+missing numbers before arr[i] =arr[i] - expected = arr[i] - (i+1) = arr[i] - i - 1
+
+return:
+    answer = e + k + 1
+
 class Solution {
 public:
     int findKthPositive(vector<int>& arr, int k) {
