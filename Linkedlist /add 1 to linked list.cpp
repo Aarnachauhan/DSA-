@@ -1,4 +1,7 @@
+
 gfg
+tc-o(n)
+sc-O(1)
 Node* reverse(Node* head){
     Node* prev = NULL;
     Node* curr = head;
@@ -37,3 +40,28 @@ Node* addOne(Node* head) {
     head = reverse(head);
     return head;
 }
+
+
+optimal : 
+tc-o(n)
+sc-o(n)
+class Solution {
+  public:
+int helper(Node* head){
+    if(head==nullptr) return 1;
+    int carry=helper(head->next);
+    int sum=head->data +carry;
+    head->data=sum%10;
+    return sum/10;
+    
+}
+    Node* addOne(Node* head) {
+      int carry=helper(head);
+      if(carry){
+          Node* newhead=new Node(carry);
+          newhead->next=head;
+          head=newhead;
+      }
+        return head;
+    }
+};
