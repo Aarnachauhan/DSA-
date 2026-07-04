@@ -2,33 +2,41 @@ note:whenever we need to create a new list. always create a dummy node. ALWAYS.
 tc- 0(max(N1,N2))
 SC- 0(MAX(N1,N2)) // this is used to store the data and not to solve the question.
 
-  class Solution {
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* dummynode=new ListNode(-1);
-        ListNode* curr=dummynode;
-        ListNode* temp1=l1;
-        ListNode* temp2=l2;
+        ListNode* dummyhead=new ListNode(0);
+        ListNode* tail=dummyhead;
         int carry=0;
-        while(temp1 !=nullptr || temp2 !=nullptr){
-            int sum=carry;
-            if(temp1) sum+=temp1->val;
-            if(temp2) sum+=temp2->val;
 
-            ListNode* newnode=new ListNode(sum%10);
+        while(l1 != nullptr || l2!=nullptr || carry !=0){
+            int digit1=(l1 !=nullptr) ? l1->val : 0;
+            int digit2=(l2 !=nullptr) ? l2->val : 0;
+
+            int sum=digit1 + digit2 + carry;
+            int digit=sum%10;
             carry=sum/10;
 
-            curr->next=newnode;
-            curr=curr->next;
+            ListNode* newnode= new ListNode(digit);
+            tail->next=newnode;
+            tail=tail->next;
 
-            if(temp1) temp1=temp1->next;
-            if(temp2) temp2=temp2->next;
+            l1=(l1!=nullptr) ? l1 -> next: nullptr;
+            l2=(l2!=nullptr) ? l2 -> next : nullptr;
+        }
 
-        }
-        if(carry) {
-            ListNode* newnode=new ListNode (carry);
-            curr->next=newnode;
-        }
-        return dummynode->next;
+        ListNode* res=dummyhead->next;
+        delete dummyhead;
+        return res;
     }
 };
