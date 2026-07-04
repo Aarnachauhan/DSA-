@@ -5,13 +5,13 @@ sc=o(1);
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        ListNode* temp1=headA;
-        ListNode* temp2=headB;
+        ListNode* p1=headA;
+        ListNode* p2=headB;
 
-        while(temp1 != temp2){
-           temp1=temp1==nullptr?headB:temp1->next; //jab ek ka nullptr aa jaye toh dusri ll k head per bhej do
-           temp2=temp2==nullptr?headA:temp2->next; //same
+        while(p1 !=p2){
+            p1 = (p1==nullptr) ? headB : p1->next;
+            p2 = (p2==nullptr) ? headA : p2->next; 
         }
-        return temp1;
+        return p1;
     }
 };
