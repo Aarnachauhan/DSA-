@@ -23,37 +23,33 @@ class Solution {
 };
 
 optimal : two pointers
+tc-o(n)
+sc-o(1)
 class Solution {
   public:
     vector<pair<int, int>> findPairsWithGivenSum(Node *head, int target) {
         // code here
         vector<pair<int,int>> ans;
-        Node *first=head;
-        Node *second=head;
+        if(head==nullptr) return ans;
+        Node* left=head;
+        Node* right=head;
         
-        //move second to the end
-        while(second->next!=nullptr){
-            second=second->next;
+        while(right->next!=nullptr){
+            right=right->next;
         }
         
-        bool found=false;
-        //second->next==first : crossed each other
-        //first!=second : became same
-        while(first!=second && second->next!=first){
-            if((first->data + second->data)==target){
-                found=true;
-                ans.push_back({first->data , second->data});
-                first=first->next;
-                second=second->prev;
-                
+        while(left!=right && right->next!=left){
+            int sum=left->data + right->data;
+            if(sum==target){
+                ans.push_back({left->data , right->data});
+                left=left->next;
+                right=right->prev;
             }
-            else if((first->data + second->data)<target){
-                first=first->next;
+            else if(sum>target){
+                right=right->prev;
             }
-            else{
-                second=second->prev;
-            }
+            else left=left->next;
         }
-     return ans;
+        return ans;
     }
 };
