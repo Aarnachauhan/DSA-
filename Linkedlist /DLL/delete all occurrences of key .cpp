@@ -1,24 +1,34 @@
-Node * deleteAllOccurrences(Node* head, int k) {
-    // Write your code here
-    Node* temp=head;
-    while(temp!=nullptr){
-        if(temp->data==k){
-            if(temp==head){
-                head=temp->next;
+class Solution {
+  public:
+
+    // Function to delete a specified node from the linked list
+    Node* deleteAllOccurOfX(Node* head, int x) {
+
+        // code here
+        Node* temp=head;
+        while(temp!=nullptr){
+            if(temp->data==x){
+                Node* nextnode=temp->next;
+                Node* prevnode=temp->prev;
+                
+                if(temp==head){
+                    head=nextnode;
+                }
+                
+                if(prevnode){
+                    prevnode->next=nextnode;
+                }
+                
+                if(nextnode){
+                    nextnode->prev=prevnode;
+                }
+                delete temp;
+                temp=nextnode;
             }
-            Node* nextnode=temp->next;
-            Node* prevnode=temp->prev;
-            if(nextnode!=nullptr) nextnode->prev= prevnode;
-            if(prevnode!=nullptr) prevnode->next= nextnode;
-
-            free(temp);
-            temp=temp->next;
+            else{
+                temp=temp->next;
+            }
         }
-
-        else {
-            temp = temp->next;
-        }
+        return head;
     }
-
-    return head;
-}
+};
