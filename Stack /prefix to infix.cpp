@@ -1,39 +1,31 @@
 tc-o(2n)
   sc-o(n)
 gfg
+       
 class Solution {
   public:
- bool isoperator(char x){
-     switch(x){
-         case '+':
-         case '-':
-         case '/':
-         case '*':
-         case '^':
-         case '%':
-         return true;
-     }
-     return false;
- }
     string preToInfix(string pre_exp) {
         // Write your code here
-        stack<string> s;
-        int len=pre_exp.size();
-        
-        for(int i=len-1;i>=0;i--){
-            if(isoperator(pre_exp[i])){
-                string op1=s.top();
-                s.pop();
-                string op2=s.top();
-                s.pop();
-                string temp="("+ op1+ pre_exp[i] +op2+")";
-                s.push(temp);
+        stack<string> st;
+        for(int i=pre_exp.size()-1 ;i>=0;i--){
+            char c=pre_exp[i];
+            
+            if(isalnum(c)){
+                st.push(string(1,c));
                 
             }
             else{
-                s.push(string(1,pre_exp[i]));
+                string op1=st.top();
+                st.pop();
                 
+                string op2=st.top();
+                st.pop();
+                
+                string temp='(' + op1 + c + op2 + ')';
+                st.push(temp);
             }
+            
         }
-        return s.top();
+        return st.top();
     }
+};
