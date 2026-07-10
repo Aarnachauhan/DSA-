@@ -5,42 +5,42 @@ tc- o(n)
 class Solution {
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
+
         stack<int> st;
 
-        for(int &a: asteroids){
-            //collision condition : a is -ve and st.top is +ve
-            while(!st.empty() && a<0 && st.top()>0){
-                int sum=a+ st.top();
+        for (int x : asteroids) {
 
-                if(sum<0){ //+ve will explode 
-                    st.pop();
+            bool alive = true;
+
+            while (alive && !st.empty() && st.top() > 0 && x < 0) {
+
+                if (st.top() < -x) {
+                    st.pop();               // stack asteroid dies
                 }
-                else if(sum>0){ //+ve will explode 
-                    a=0; //to break the while loop
+                else if (st.top() == -x) {
+                    st.pop();               // both die
+                    alive = false;
                 }
-                else{ //sum=0
-                    st.pop(); 
-                    a=0;
+                else {
+                    alive = false;          // current dies
                 }
- 
             }
-            if(a!=0){
-                st.push(a);
-            }
+
+            if (alive)
+                st.push(x);
         }
-        int s=st.size();
-        vector<int> ans(s);
-        int i=s-1;
-        while(!st.empty()){
-            ans[i]=st.top();
+
+        vector<int> ans(st.size());
+
+        for (int i = st.size() - 1; i >= 0; i--) {
+            ans[i] = st.top();
             st.pop();
-            i--;
         }
+
         return ans;
-
-
     }
 };
+
 
 
 using vector :
