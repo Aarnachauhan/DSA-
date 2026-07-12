@@ -1,4 +1,4 @@
-tc-2(nlogn+ n)
+tc-2(nlogn+ n) = o(nlogn)
 sc-O(1)
 
 
