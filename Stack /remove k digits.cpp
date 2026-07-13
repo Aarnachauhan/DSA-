@@ -1,35 +1,36 @@
 class Solution {
 public:
     string removeKdigits(string num, int k) {
-        if(num.length()<=k){
-            return "0";
-        }
-        if(k==0) return num;
-
-        string res="";
-        stack<char> s;
-        s.push(num[0]); //pushing first element into stack
-
-        for(int i=1;i<num.length();i++){ //iterating the string
-            while(k>0 && !s.empty() && num[i]<s.top()){
+        stack<char> st;
+        for(char c: num){
+            while(!st.empty() && k>0 && st.top()>c){
+                st.pop();
                 k--;
-                s.pop();
             }
-            s.push(num[i]); //after poping the top of the stack we have to push the current element into the stack
-            if(s.size() ==1 && num[i]=='0') s.pop(); //this pops preceeding zeroes
-    
+            st.push(c);
         }
-        while(k && !s.empty()){
-            k--;
-            s.pop(); //this is for cases is 4568
-        }
-        while(!s.empty()){
-            res.push_back(s.top()); //push the answer into the vector
-            s.pop();
-        }
-        reverse(res.begin(),res.end()); 
 
-        if(res.length()==0) return "0";
-        return res;
+        while(k>0){ //this is for ex:4567
+            st.pop();
+            k--;
+        }
+
+        string ans="";
+        while(!st.empty()){
+            ans+=st.top();
+            st.pop();
+        }
+
+         reverse(ans.begin(),ans.end());
+         int i=0;
+        while(i<ans.size() && ans[i]=='0'){ //for trailing zeros
+            i++;
+        }
+
+        ans=ans.substr(i);
+
+        if(ans=="") return "0";
+
+        return ans;
     }
 };
