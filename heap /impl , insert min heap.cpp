@@ -2,8 +2,7 @@ no platform -> refer gfg
 
 tc-o(logn )
 sc-o(n) 
-#include <bits/stdc++.h>
-using namespace std;
+
 #include <bits/stdc++.h>
 using namespace std;
 class MinHeap{
