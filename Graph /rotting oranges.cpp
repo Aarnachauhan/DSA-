@@ -1,6 +1,6 @@
 lc 994
 sc -o(n*m)
-tc-O(m*n) + o(m*n *4 )
+tc-O(m*n) + o(m*n *4 )= o(m*n)
 
 class Solution {
 public:
